@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace TiendaPc.DLL.Models;
 
@@ -13,7 +14,9 @@ public partial class Ciudad
 
     public int IdProvincia { get; set; }
 
+    [JsonIgnore]
     public virtual ICollection<Barrio> Barrios { get; set; } = new List<Barrio>();
+    [JsonIgnore]
 
     public virtual Provincia IdProvinciaNavigation { get; set; }
 }

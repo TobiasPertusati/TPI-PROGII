@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace TiendaPc.DLL.Models;
 
@@ -15,5 +16,9 @@ public partial class FormaPago
 
     public decimal? Descuento { get; set; }
 
-    public virtual ICollection<PedidosFormasPago> PedidosFormasPagos { get; set; } = new List<PedidosFormasPago>();
+    [JsonIgnore]
+    public virtual ICollection<Pedido> Pedidos { get; set; } = new List<Pedido>();
+
+
+    //public virtual ICollection<PedidoFormaPago> PedidosFormasPagos { get; set; } = new List<PedidoFormaPago>();
 }

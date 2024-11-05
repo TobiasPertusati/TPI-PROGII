@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace TiendaPc.DLL.Models;
 
-public partial class PedidosFormasPago
+public partial class PedidoFormaPago
 {
     public int IdPedFor { get; set; }
 

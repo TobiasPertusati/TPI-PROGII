@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace TiendaPc.DLL.Models;
 
@@ -23,7 +24,11 @@ public partial class Componente
 
     public string UrlImg { get; set; }
 
+    public bool Estado { get; set; }
+    [JsonIgnore]
+
     public virtual ICollection<DetallePedido> DetallesPedidos { get; set; } = new List<DetallePedido>();
+    [JsonIgnore]
 
     public virtual ICollection<EspecificacionComponente> EspecificacionesComponentes { get; set; } = new List<EspecificacionComponente>();
 

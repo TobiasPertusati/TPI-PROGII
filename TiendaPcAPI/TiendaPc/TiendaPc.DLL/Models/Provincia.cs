@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace TiendaPc.DLL.Models;
 
@@ -11,5 +12,6 @@ public partial class Provincia
 
     public string NombreProvincia { get; set; }
 
+    [JsonIgnore]
     public virtual ICollection<Ciudad> Ciudades { get; set; } = new List<Ciudad>();
 }

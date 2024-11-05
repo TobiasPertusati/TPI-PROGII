@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace TiendaPc.DLL.Models;
 
@@ -23,15 +24,16 @@ public partial class Cliente
 
     public int NroCalle { get; set; }
 
-    public string Pass { get; set; }
-
     public bool? Estado { get; set; }
 
+    [JsonIgnore]
     public virtual ICollection<Contacto> Contactos { get; set; } = new List<Contacto>();
+    [JsonIgnore]
 
     public virtual Barrio IdBarrioNavigation { get; set; }
+    [JsonIgnore]
 
     public virtual TipoDocumento IdTipoDocNavigation { get; set; }
-
+    [JsonIgnore]
     public virtual ICollection<Pedido> Pedidos { get; set; } = new List<Pedido>();
 }

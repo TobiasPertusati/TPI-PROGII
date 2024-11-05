@@ -7,20 +7,48 @@
       "RelativeMoniker": "D:0:0:{4B3E6512-CA2A-4D45-8DF4-CB0D2DED26EA}|TiendaPc.API\\TiendaPc.API.csproj|solutionrelative:tiendapc.api\\controllers\\componentecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EB5AE461-9E7B-4E8B-A344-10AEFC61AFF9}|TiendaPc.DLL\\TiendaPc.DLL.csproj|c:\\users\\tobia\\desktop\\tup\\repos\\tpi\\tiendapcapi\\tiendapc\\tiendapc.dll\\data\\repository\\interfaces\\icomponenterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EB5AE461-9E7B-4E8B-A344-10AEFC61AFF9}|TiendaPc.DLL\\TiendaPc.DLL.csproj|solutionrelative:tiendapc.dll\\data\\repository\\interfaces\\icomponenterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4B3E6512-CA2A-4D45-8DF4-CB0D2DED26EA}|TiendaPc.API\\TiendaPc.API.csproj|c:\\users\\tobia\\desktop\\tup\\repos\\tpi\\tiendapcapi\\tiendapc\\tiendapc.api\\controllers\\pedidocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B3E6512-CA2A-4D45-8DF4-CB0D2DED26EA}|TiendaPc.API\\TiendaPc.API.csproj|solutionrelative:tiendapc.api\\controllers\\pedidocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EB5AE461-9E7B-4E8B-A344-10AEFC61AFF9}|TiendaPc.DLL\\TiendaPc.DLL.csproj|c:\\users\\tobia\\desktop\\tup\\repos\\tpi\\tiendapcapi\\tiendapc\\tiendapc.dll\\data\\repository\\componenterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EB5AE461-9E7B-4E8B-A344-10AEFC61AFF9}|TiendaPc.DLL\\TiendaPc.DLL.csproj|solutionrelative:tiendapc.dll\\data\\repository\\componenterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4B3E6512-CA2A-4D45-8DF4-CB0D2DED26EA}|TiendaPc.API\\TiendaPc.API.csproj|c:\\users\\tobia\\desktop\\tup\\repos\\tpi\\tiendapcapi\\tiendapc\\tiendapc.api\\controllers\\marcacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B3E6512-CA2A-4D45-8DF4-CB0D2DED26EA}|TiendaPc.API\\TiendaPc.API.csproj|solutionrelative:tiendapc.api\\controllers\\marcacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EB5AE461-9E7B-4E8B-A344-10AEFC61AFF9}|TiendaPc.DLL\\TiendaPc.DLL.csproj|c:\\users\\tobia\\desktop\\tup\\repos\\tpi\\tiendapcapi\\tiendapc\\tiendapc.dll\\services\\interfaces\\icomponenteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EB5AE461-9E7B-4E8B-A344-10AEFC61AFF9}|TiendaPc.DLL\\TiendaPc.DLL.csproj|solutionrelative:tiendapc.dll\\services\\interfaces\\icomponenteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EB5AE461-9E7B-4E8B-A344-10AEFC61AFF9}|TiendaPc.DLL\\TiendaPc.DLL.csproj|c:\\users\\tobia\\desktop\\tup\\repos\\tpi\\tiendapcapi\\tiendapc\\tiendapc.dll\\models\\pedidoformapago.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB5AE461-9E7B-4E8B-A344-10AEFC61AFF9}|TiendaPc.DLL\\TiendaPc.DLL.csproj|solutionrelative:tiendapc.dll\\models\\pedidoformapago.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EB5AE461-9E7B-4E8B-A344-10AEFC61AFF9}|TiendaPc.DLL\\TiendaPc.DLL.csproj|c:\\users\\tobia\\desktop\\tup\\repos\\tpi\\tiendapcapi\\tiendapc\\tiendapc.dll\\services\\componenteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EB5AE461-9E7B-4E8B-A344-10AEFC61AFF9}|TiendaPc.DLL\\TiendaPc.DLL.csproj|solutionrelative:tiendapc.dll\\services\\componenteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4B3E6512-CA2A-4D45-8DF4-CB0D2DED26EA}|TiendaPc.API\\TiendaPc.API.csproj|c:\\users\\tobia\\desktop\\tup\\repos\\tpi\\tiendapcapi\\tiendapc\\tiendapc.api\\controllers\\tipocomponentecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B3E6512-CA2A-4D45-8DF4-CB0D2DED26EA}|TiendaPc.API\\TiendaPc.API.csproj|solutionrelative:tiendapc.api\\controllers\\tipocomponentecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB5AE461-9E7B-4E8B-A344-10AEFC61AFF9}|TiendaPc.DLL\\TiendaPc.DLL.csproj|c:\\users\\tobia\\desktop\\tup\\repos\\tpi\\tiendapcapi\\tiendapc\\tiendapc.dll\\models\\componente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB5AE461-9E7B-4E8B-A344-10AEFC61AFF9}|TiendaPc.DLL\\TiendaPc.DLL.csproj|solutionrelative:tiendapc.dll\\models\\componente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB5AE461-9E7B-4E8B-A344-10AEFC61AFF9}|TiendaPc.DLL\\TiendaPc.DLL.csproj|c:\\users\\tobia\\desktop\\tup\\repos\\tpi\\tiendapcapi\\tiendapc\\tiendapc.dll\\models\\pedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB5AE461-9E7B-4E8B-A344-10AEFC61AFF9}|TiendaPc.DLL\\TiendaPc.DLL.csproj|solutionrelative:tiendapc.dll\\models\\pedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB5AE461-9E7B-4E8B-A344-10AEFC61AFF9}|TiendaPc.DLL\\TiendaPc.DLL.csproj|c:\\users\\tobia\\desktop\\tup\\repos\\tpi\\tiendapcapi\\tiendapc\\tiendapc.dll\\models\\formapago.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB5AE461-9E7B-4E8B-A344-10AEFC61AFF9}|TiendaPc.DLL\\TiendaPc.DLL.csproj|solutionrelative:tiendapc.dll\\models\\formapago.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB5AE461-9E7B-4E8B-A344-10AEFC61AFF9}|TiendaPc.DLL\\TiendaPc.DLL.csproj|c:\\users\\tobia\\desktop\\tup\\repos\\tpi\\tiendapcapi\\tiendapc\\tiendapc.dll\\data\\repository\\pedidorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB5AE461-9E7B-4E8B-A344-10AEFC61AFF9}|TiendaPc.DLL\\TiendaPc.DLL.csproj|solutionrelative:tiendapc.dll\\data\\repository\\pedidorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB5AE461-9E7B-4E8B-A344-10AEFC61AFF9}|TiendaPc.DLL\\TiendaPc.DLL.csproj|c:\\users\\tobia\\desktop\\tup\\repos\\tpi\\tiendapcapi\\tiendapc\\tiendapc.dll\\models\\dto\\pedidodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB5AE461-9E7B-4E8B-A344-10AEFC61AFF9}|TiendaPc.DLL\\TiendaPc.DLL.csproj|solutionrelative:tiendapc.dll\\models\\dto\\pedidodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB5AE461-9E7B-4E8B-A344-10AEFC61AFF9}|TiendaPc.DLL\\TiendaPc.DLL.csproj|c:\\users\\tobia\\desktop\\tup\\repos\\tpi\\tiendapcapi\\tiendapc\\tiendapc.dll\\models\\detallepedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB5AE461-9E7B-4E8B-A344-10AEFC61AFF9}|TiendaPc.DLL\\TiendaPc.DLL.csproj|solutionrelative:tiendapc.dll\\models\\detallepedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB5AE461-9E7B-4E8B-A344-10AEFC61AFF9}|TiendaPc.DLL\\TiendaPc.DLL.csproj|c:\\users\\tobia\\desktop\\tup\\repos\\tpi\\tiendapcapi\\tiendapc\\tiendapc.dll\\models\\categoriafiscal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB5AE461-9E7B-4E8B-A344-10AEFC61AFF9}|TiendaPc.DLL\\TiendaPc.DLL.csproj|solutionrelative:tiendapc.dll\\models\\categoriafiscal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,8 +58,36 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PedidoController.cs",
+              "DocumentMoniker": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.API\\Controllers\\PedidoController.cs",
+              "RelativeDocumentMoniker": "TiendaPc.API\\Controllers\\PedidoController.cs",
+              "ToolTip": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.API\\Controllers\\PedidoController.cs",
+              "RelativeToolTip": "TiendaPc.API\\Controllers\\PedidoController.cs",
+              "ViewState": "AQIAACwAAAAAAAAAAAASwDUAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T20:07:17.682Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "PedidoRepository.cs",
+              "DocumentMoniker": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.DLL\\Data\\Repository\\PedidoRepository.cs",
+              "RelativeDocumentMoniker": "TiendaPc.DLL\\Data\\Repository\\PedidoRepository.cs",
+              "ToolTip": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.DLL\\Data\\Repository\\PedidoRepository.cs",
+              "RelativeToolTip": "TiendaPc.DLL\\Data\\Repository\\PedidoRepository.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAgwCoAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-03T22:59:17.904Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -40,61 +96,126 @@
               "RelativeDocumentMoniker": "TiendaPc.API\\Controllers\\ComponenteController.cs",
               "ToolTip": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.API\\Controllers\\ComponenteController.cs",
               "RelativeToolTip": "TiendaPc.API\\Controllers\\ComponenteController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
+              "ViewState": "AQIAABsAAAAAAAAAAAAowCkAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-25T18:46:24.872Z",
+              "WhenOpened": "2024-11-05T19:44:02.998Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "ComponenteService.cs",
-              "DocumentMoniker": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.DLL\\Services\\ComponenteService.cs",
-              "RelativeDocumentMoniker": "TiendaPc.DLL\\Services\\ComponenteService.cs",
-              "ToolTip": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.DLL\\Services\\ComponenteService.cs",
-              "RelativeToolTip": "TiendaPc.DLL\\Services\\ComponenteService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAnAAAA",
+              "Title": "TipoComponenteController.cs",
+              "DocumentMoniker": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.API\\Controllers\\TipoComponenteController.cs",
+              "RelativeDocumentMoniker": "TiendaPc.API\\Controllers\\TipoComponenteController.cs",
+              "ToolTip": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.API\\Controllers\\TipoComponenteController.cs",
+              "RelativeToolTip": "TiendaPc.API\\Controllers\\TipoComponenteController.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABkAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-25T18:45:39.136Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IComponenteService.cs",
-              "DocumentMoniker": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.DLL\\Services\\Interfaces\\IComponenteService.cs",
-              "RelativeDocumentMoniker": "TiendaPc.DLL\\Services\\Interfaces\\IComponenteService.cs",
-              "ToolTip": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.DLL\\Services\\Interfaces\\IComponenteService.cs",
-              "RelativeToolTip": "TiendaPc.DLL\\Services\\Interfaces\\IComponenteService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAKAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-25T18:45:25.062Z",
+              "WhenOpened": "2024-11-05T19:32:24.184Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ComponenteRepository.cs",
-              "DocumentMoniker": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.DLL\\Data\\Repository\\ComponenteRepository.cs",
-              "RelativeDocumentMoniker": "TiendaPc.DLL\\Data\\Repository\\ComponenteRepository.cs",
-              "ToolTip": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.DLL\\Data\\Repository\\ComponenteRepository.cs",
-              "RelativeToolTip": "TiendaPc.DLL\\Data\\Repository\\ComponenteRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
+              "Title": "MarcaController.cs",
+              "DocumentMoniker": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.API\\Controllers\\MarcaController.cs",
+              "RelativeDocumentMoniker": "TiendaPc.API\\Controllers\\MarcaController.cs",
+              "ToolTip": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.API\\Controllers\\MarcaController.cs",
+              "RelativeToolTip": "TiendaPc.API\\Controllers\\MarcaController.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABkAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-25T18:43:46.31Z",
+              "WhenOpened": "2024-11-05T19:32:21.485Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "IComponenteRepository.cs",
-              "DocumentMoniker": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.DLL\\Data\\Repository\\Interfaces\\IComponenteRepository.cs",
-              "RelativeDocumentMoniker": "TiendaPc.DLL\\Data\\Repository\\Interfaces\\IComponenteRepository.cs",
-              "ToolTip": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.DLL\\Data\\Repository\\Interfaces\\IComponenteRepository.cs",
-              "RelativeToolTip": "TiendaPc.DLL\\Data\\Repository\\Interfaces\\IComponenteRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "DocumentIndex": 5,
+              "Title": "Componente.cs",
+              "DocumentMoniker": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.DLL\\Models\\Componente.cs",
+              "RelativeDocumentMoniker": "TiendaPc.DLL\\Models\\Componente.cs",
+              "ToolTip": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.DLL\\Models\\Componente.cs",
+              "RelativeToolTip": "TiendaPc.DLL\\Models\\Componente.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-25T18:43:23.454Z",
+              "WhenOpened": "2024-11-05T19:20:09.533Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PedidoFormaPago.cs",
+              "DocumentMoniker": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.DLL\\Models\\PedidoFormaPago.cs",
+              "RelativeDocumentMoniker": "TiendaPc.DLL\\Models\\PedidoFormaPago.cs",
+              "ToolTip": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.DLL\\Models\\PedidoFormaPago.cs",
+              "RelativeToolTip": "TiendaPc.DLL\\Models\\PedidoFormaPago.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T19:09:10.723Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "DetallePedido.cs",
+              "DocumentMoniker": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.DLL\\Models\\DetallePedido.cs",
+              "RelativeDocumentMoniker": "TiendaPc.DLL\\Models\\DetallePedido.cs",
+              "ToolTip": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.DLL\\Models\\DetallePedido.cs",
+              "RelativeToolTip": "TiendaPc.DLL\\Models\\DetallePedido.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T03:23:09.826Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "CategoriaFiscal.cs",
+              "DocumentMoniker": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.DLL\\Models\\CategoriaFiscal.cs",
+              "RelativeDocumentMoniker": "TiendaPc.DLL\\Models\\CategoriaFiscal.cs",
+              "ToolTip": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.DLL\\Models\\CategoriaFiscal.cs",
+              "RelativeToolTip": "TiendaPc.DLL\\Models\\CategoriaFiscal.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAABSAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T03:15:25.929Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Pedido.cs",
+              "DocumentMoniker": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.DLL\\Models\\Pedido.cs",
+              "RelativeDocumentMoniker": "TiendaPc.DLL\\Models\\Pedido.cs",
+              "ToolTip": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.DLL\\Models\\Pedido.cs",
+              "RelativeToolTip": "TiendaPc.DLL\\Models\\Pedido.cs",
+              "ViewState": "AQIAAB8AAAAAAAAAAAAswC8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T21:05:21.01Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PedidoDto.cs",
+              "DocumentMoniker": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.DLL\\Models\\DTO\\PedidoDto.cs",
+              "RelativeDocumentMoniker": "TiendaPc.DLL\\Models\\DTO\\PedidoDto.cs",
+              "ToolTip": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.DLL\\Models\\DTO\\PedidoDto.cs",
+              "RelativeToolTip": "TiendaPc.DLL\\Models\\DTO\\PedidoDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T01:43:04.355Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "FormaPago.cs",
+              "DocumentMoniker": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.DLL\\Models\\FormaPago.cs",
+              "RelativeDocumentMoniker": "TiendaPc.DLL\\Models\\FormaPago.cs",
+              "ToolTip": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.DLL\\Models\\FormaPago.cs",
+              "RelativeToolTip": "TiendaPc.DLL\\Models\\FormaPago.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T21:10:31.946Z",
               "EditorCaption": ""
             }
           ]

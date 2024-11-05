@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace TiendaPc.DLL.Models;
 
@@ -10,6 +11,8 @@ public partial class Pedido
     public int IdPedido { get; set; }
 
     public int IdCliente { get; set; }
+
+    public int IdFormaPago { get; set; }
 
     public int? IdCategoriaFiscal { get; set; }
 
@@ -23,15 +26,24 @@ public partial class Pedido
 
     public int IdFormaEntrega { get; set; }
 
-    public virtual ICollection<DetallePedido> DetallesPedidos { get; set; } = new List<DetallePedido>();
+    public string Estado { get; set; }
 
+    public DateTime? FechaCancelacion { get; set; }
+
+    public string MotivoCancelacion { get; set; }
+
+    [JsonIgnore]
+    public virtual ICollection<DetallePedido> DetallesPedidos { get; set; } = new List<DetallePedido>();
+    [JsonIgnore]
     public virtual CategoriaFiscal IdCategoriaFiscalNavigation { get; set; }
 
+    [JsonIgnore]
+    public virtual FormaPago IdFormaPagoNavigation { get; set; }
+    [JsonIgnore]
     public virtual Cliente IdClienteNavigation { get; set; }
-
+    [JsonIgnore]
     public virtual FormaEntrega IdFormaEntregaNavigation { get; set; }
-
+    [JsonIgnore]
     public virtual Empleado LegajoEmpNavigation { get; set; }
 
-    public virtual ICollection<PedidosFormasPago> PedidosFormasPagos { get; set; } = new List<PedidosFormasPago>();
 }

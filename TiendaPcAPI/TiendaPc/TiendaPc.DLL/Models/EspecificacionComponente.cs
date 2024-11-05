@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace TiendaPc.DLL.Models;
 
@@ -15,7 +16,8 @@ public partial class EspecificacionComponente
 
     public string Valor { get; set; }
 
+    [JsonIgnore]
     public virtual Componente IdComponenteNavigation { get; set; }
-
+    [JsonIgnore]
     public virtual Especificacion IdEspecNavigation { get; set; }
 }

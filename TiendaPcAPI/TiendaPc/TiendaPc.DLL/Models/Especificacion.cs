@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace TiendaPc.DLL.Models;
 
@@ -11,7 +12,8 @@ public partial class Especificacion
 
     public string NombreEspecificacion { get; set; }
 
+    [JsonIgnore]
     public virtual ICollection<EspecificacionComponente> EspecificacionesComponentes { get; set; } = new List<EspecificacionComponente>();
-
+    [JsonIgnore]
     public virtual ICollection<TipoComponenteEspecificacion> TiposComponentesEspecificaciones { get; set; } = new List<TipoComponenteEspecificacion>();
 }
