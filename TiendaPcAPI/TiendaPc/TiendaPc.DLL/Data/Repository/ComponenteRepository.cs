@@ -33,7 +33,11 @@ namespace TiendaPc.DLL.Data.Repository
         public async Task<List<Componente>> GetAllFiltrosAsync(int? idMarca, int? idTipo, bool? estado)
         {
             // Empezamos con la consulta base de componentes
-            var query = _context.Componentes.AsQueryable();
+            var query = _context.Componentes
+                      .Include(c => c.IdTipoComponenteNavigation)
+                      .Include(c => c.IdMarcaNavigation)
+                      .OrderBy(t => t.IdTipoComponenteNavigation.IdTipoComponente)
+                      .AsQueryable();
 
             // Agregar filtros condicionalmente
             if (estado.HasValue)

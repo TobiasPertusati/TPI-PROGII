@@ -40,6 +40,14 @@ namespace TiendaPc.API.Controllers
         {
             try
             {
+                if (tipoComponenteId == 0)
+                {
+                    tipoComponenteId = null;
+                }
+                if (marcaId == 0)
+                {
+                    marcaId = null;
+                }
                 List<Componente> componentes = await _service.GetAllFiltrosAsync(marcaId,tipoComponenteId,estado);
                 if (componentes.Count == 0)
                 {

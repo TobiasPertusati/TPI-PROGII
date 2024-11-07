@@ -217,6 +217,19 @@ async function getPedidos(fechaDesde, fechaFin, idFormaPago, estado) {
       url += `estado=${estado}`;
     }
     const response = await fetch(url);
+    if (response.status === 404) {
+      // Mostrar la alerta si el código de respuesta es 404
+      swal("!Atención!", "No se encontraron pedidos con los filtros seleccionados.", { 
+          icon: "warning",
+          buttons: {
+              confirm: {
+                  text: "Aceptar",
+                  className: "btn btn-warning",
+              },
+          },
+      });
+      return;
+    }
     if (!response.ok) {
       throw new Error("No se pudieron cargar los pedidos");
     }
@@ -243,10 +256,10 @@ function cargarPedidos(pedidos) {
         <td>${pedido.nombreFormaPago}</td>
         <td>
           <div class="d-flex justify-content-center">
-            <button type="button" class="btn btn-icon btn-round btn-primary me-2">
+            <button data-id="${pedido.idPedido}" id="detallePedido" type="button" class="btn btn-icon btn-round btn-primary me-2" >
               <i class="fas fa-eye"></i>
             </button>
-            <button type="button" class="btn btn-icon btn-round btn-danger">
+            <button data-id="${pedido.idPedido}" id="cancelarPedido" type="button" class="btn btn-icon btn-round btn-danger">
               <i class="icon-close"></i>
             </button>
           </div>
@@ -254,4 +267,28 @@ function cargarPedidos(pedidos) {
       </tr>`;
     tablaPedidos.insertAdjacentHTML("beforeend", row);
   });
+       // Añadir event listeners a los botones de detalle
+       document.querySelectorAll('.btn-primary').forEach(button => {
+        button.addEventListener('click', function () {
+            const id = this.dataset.id; // Obtener el ID del componente
+            verDetallePedido(id); 
+        });
+    });
+
+    document.querySelectorAll('.btn-danger').forEach(button => {
+      button.addEventListener('click', function () {
+          const id = this.dataset.id; // Obtener el ID del componente
+          cancelarPedido(id); 
+      });
+  });
+
+}
+
+function verDetallePedido(id){
+  console.log('detalle del pedido' , id)
+}
+
+function cancelarPedido(id){
+  // IMPLEMENTAR UN SWAL PARA 
+  console.log('se cancelo el pedido' , id)
 }

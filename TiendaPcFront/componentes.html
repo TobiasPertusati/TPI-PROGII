@@ -172,7 +172,7 @@
                 </ul>
                 <button class="btn btn-secondary dropdown-toggle me-2" type="button" data-bs-toggle="dropdown">
                   Marcas
-                </button>
+                </button> 
                 <ul class="dropdown-menu" role="menu" id="marcas">
                   <li>
                     <a class="dropdown-item" href="#">TODAS</a>
@@ -181,15 +181,14 @@
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
                   Estado
                 </button>
-                <ul class="dropdown-menu" role="menu" id="marcas">
+                <ul class="dropdown-menu" role="menu" id="estado">
                   <li>
-                    <a class="dropdown-item" href="#">ACTIVO</a>
-                    <a class="dropdown-item" href="#">INACTIVO</a>
-
+                      <a class="dropdown-item" href="#" data-value="ACTIVO">ACTIVO</a>
+                      <a class="dropdown-item" href="#" data-value="INACTIVO">INACTIVO</a>
                   </li>
-                </ul>
+                </ul>              
                 <button id="cargarComponentesBtn" class="btn btn-secondary">Buscar</button>
-                <button id="cargarComponentesBtn" class="btn btn-primary">
+                <button type="button" id="abrirModalNuevoComponenteBtn" class="btn btn-success">Crear Nuevo Componente
                   <i class="fas fa-plus"></i>
                 </button>
 
@@ -213,27 +212,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td class="sorting_1">
-                          <div class="form-button-action">
-                            <button type="button" data-id="${componente.idComponente}" data-bs-toggle="tooltip"
-                              title="Edit Task" class="btn btn-link btn-primary btn-lg">
-                              <i class="fa fa-edit"></i>
-                            </button>
-                            <button type="button" data-id="${componente.idComponente}" data-bs-toggle="tooltip"
-                              title="Remove" class="btn btn-link btn-danger">
-                              <i class="fa fa-times"></i>
-                            </button>
-                          </div>
-                        </td>
-    
+                        <!-- GENERADO DINAMICAMENTE -->
                     </tbody>
                   </table>
     
@@ -284,14 +263,11 @@
                             <label for="stockMinimo">Stock Mínimo:</label>
                             <input type="number" class="form-control" id="stockMinimo">
                           </div>
-                          <div class="form-group">
-                            <label for="estado">Estado</label>
-                            <input type="checkbox" id="estado" class="form-check-input">
-                          </div>
+                          
                         </form>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" id="cerrarModal">Cerrar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrarModal">Cerrar</button>
                         <button type="button" class="btn btn-primary" id="guardarCambiosBtn">Guardar Cambios</button>
                       </div>
                     </div>
@@ -325,7 +301,7 @@
   </div>
 
 
-
+  <script src="componentes.js"></script>
   <!-- End Custom template -->
   <!-- Core JS Files  -->
   <script src="assets/js/core/jquery-3.7.1.min.js"></script>
@@ -361,7 +337,6 @@
   <script src="assets/js/kaiadmin.min.js"></script>
 
 
-  <script src="datos.js"></script>
 </body>
 
 </html>
