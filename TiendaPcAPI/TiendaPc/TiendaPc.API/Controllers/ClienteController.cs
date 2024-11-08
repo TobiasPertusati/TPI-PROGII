@@ -8,11 +8,11 @@ namespace TiendaPc.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClientesController : ControllerBase
+    public class ClienteController : ControllerBase
     {
         private readonly IClienteService _clienteService;
 
-        public ClientesController(IClienteService clienteService)
+        public ClienteController(IClienteService clienteService)
         {
             _clienteService = clienteService;
         }
@@ -27,6 +27,28 @@ namespace TiendaPc.API.Controllers
             catch (Exception)
             {
                 return StatusCode(500, "Error interno al consultar los clientes");
+            }
+        }
+
+        [HttpGet("GetAll-ClientesFiltro")]
+        public async Task<IActionResult> GetClientesFiltro([FromQuery]string filtro)
+        {
+            try
+            {
+                if (filtro == null)
+                {
+                   return BadRequest(new { message = "Debe proporcionar un filtro" });
+                }
+                var clientes = await _clienteService.GetAllFiltro(filtro);
+                if (clientes.Count == 0)
+                    return NotFound(new { message = "No se encontraron clientes que contengan: " + filtro + ", en su Nombre o Apellido"});
+
+                return Ok(clientes);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Error interno: " + ex.ToString() });
+
             }
         }
 

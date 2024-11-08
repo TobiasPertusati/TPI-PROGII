@@ -46,7 +46,41 @@ namespace TiendaPc.API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "error interno: " + ex.ToString());
+                return StatusCode(500, new { message = "Error interno: " + ex.ToString() });
+            }
+        }
+        [HttpGet("GetAll-DetallesPedido")]
+        public async Task<IActionResult> GetPedidosFiltros(int idPedido)
+        {
+            try
+            {
+                if (idPedido == 0)
+                {
+                    return BadRequest(new { messaage = "Debe proporcionar la id del pedido para encontrar sus detalles" });
+                }
+                var DetallesPedido = await _pedidoService.GetAllDetallesPedido(idPedido); 
+                if (DetallesPedido.Count == 0)
+                {
+                    return NotFound(new { messaage = "No se encontraron detalles para pedido proporcionados" });
+                }
+                return Ok(DetallesPedido);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Error interno: " + ex.ToString() });
+            }
+        }
+
+        [HttpGet("Get-PedidoDto")]
+        public async Task<IActionResult> GetByIdPedidoDto([FromQuery] int id)
+        {
+            try
+            {
+                return Ok(await _pedidoService.GetByIdPedidoDto(id));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Error interno: " + ex.ToString() });
             }
         }
 
@@ -68,8 +102,7 @@ namespace TiendaPc.API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "error interno: " + ex.ToString());
-
+                return StatusCode(500, new { message = "Error interno: " + ex.ToString() });
             }
         }
 
@@ -82,31 +115,30 @@ namespace TiendaPc.API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "error interno: " + ex.ToString());
-
+                return StatusCode(500, new { message = "Error interno: " + ex.ToString() });
             }
         }
 
 
 
-        [HttpPost("insertar-pedido")]
+        [HttpPost("Nuevo-Pedido")]
         public async Task<IActionResult> PostPedido([FromBody] Pedido pedido)
         {
             try
             {
                 if(pedido == null)
                 {
-                    return BadRequest("El pedido esta vacío.");
+                    return BadRequest(new { message = "El pedido esta vacío." });
                 }
-                return Ok(await _pedidoService.Save(pedido));
-            }
-            catch (SqlException ex)
-            {
-                return StatusCode(500, "error interno: " + ex.ToString());
+                if(!await _pedidoService.Save(pedido))
+                {
+                    return BadRequest(new { message = "El pedido no fue se pudo registrar" });
+                }
+                return Ok(new { message = "El pedido se registro con exito" });
             }
             catch (Exception)
             {
-                return StatusCode(500,"Error interno al registrar el pedido");
+                return StatusCode(500, new { message = "Error interno al registrar el pedido" });
             }
         }
 
@@ -132,20 +164,20 @@ namespace TiendaPc.API.Controllers
         //}
 
 
-        [HttpPatch("bajaLogica-pedido/{id}/{motivoCancelacion}")]
+        [HttpPatch("LowOrder-Pedido")]
         public async Task<IActionResult> BajaPedido(int id, string motivoCancelacion)
         {
             try
             {
-                return Ok(await _pedidoService.LowOrder(id,motivoCancelacion));
+                if (!await _pedidoService.LowOrder(id, motivoCancelacion))
+                {
+                    return BadRequest(new { message = "El pedido ya se encuentra cancelado, o no existe."});
+                }
+                return Ok(new {message = "El pedido fue cancelado con exito"});
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
-                return StatusCode(500, "error interno: " + ex.ToString());
-            }
-            catch (Exception)
-            {
-                return StatusCode(500,"Error al dar de baja el pedido");
+                return StatusCode(500, new { message = "Error interno: " + ex.ToString() });
             }
         }
 

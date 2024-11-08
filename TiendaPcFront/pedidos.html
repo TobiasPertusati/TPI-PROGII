@@ -115,11 +115,6 @@
                         <span class="sub-item">Listado Componentes</span>
                       </a>
                     </li>
-                    <li>
-                      <a href="nuevoComponente.html">
-                        <span class="sub-item">Nuevo Componente</span>
-                      </a>
-                    </li>
                   </ul>
                 </div>
               </li>
@@ -243,6 +238,43 @@
                       </tbody>
                     </table>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="modalCancelarPedido" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title text-center">Cancelar Pedido</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="cerrarModal()">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form id="CancelarPedido">
+                    <input type="number" class="form-control" id="idPedidoHidden" hidden>
+                    <div class="form-group">
+                      <label for="idPedido">Pedido Nro:</label>
+                      <input type="number" class="form-control" id="idPedido" readonly>
+                    </div>
+                    <div class="form-group">
+                      <label for="nombreCliente">Cliente:</label>
+                      <input type="text" class="form-control" id="nombreCliente" readonly>
+                    </div>
+                    <div class="form-group">
+                      <label for="fechaPedido">Fecha Pedido</label>
+                      <input type="text" class="form-control" id="fechaPedido" readonly>
+                    </div>       
+                    <div class="form-group">
+                      <label for="motivoBaja">Motivo de Cancelación</label>
+                      <input type="textarea" class="form-control" id="motivoBaja" required>
+                    </div>                  
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrarModal">Cerrar</button>
+                  <button type="button" class="btn btn-primary" id="Confirmar-Cancelacion">Cancelar Pedido</button>
                 </div>
               </div>
             </div>

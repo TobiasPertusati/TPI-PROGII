@@ -21,12 +21,53 @@ namespace TiendaPc.DLL.Data.Repository
             return lstPedidos;
         }
 
+        public async Task<List<DetallePedidoDto>> GetAllDetallesPedido(int idPedido)
+        {
+            var query = _context.DetallesPedidos
+                .Include(dp => dp.IdComponenteNavigation)
+                .Where(dp => dp.IdPedido == idPedido)
+                .Select(dp => new DetallePedidoDto
+                {
+                    Cantidad = dp.Cantidad,
+                    PreUnitario = dp.PrecioUnitario,
+                    Descuento = dp.Descuento,
+                    NombreComponente = dp.IdComponenteNavigation.Nombre,
+                    MarcaComponente = dp.IdComponenteNavigation.IdMarcaNavigation.NombreMarca,
+                    TipoComponente = dp.IdComponenteNavigation.IdTipoComponenteNavigation.Tipo
+                }); 
+            return await query.ToListAsync();
+        }
+
         public async Task<Pedido> GetById(int id)
         {
-            var pedido = _context.Pedidos.Where(x => x.IdPedido == id).
+            var pedido = await _context.Pedidos.Where(x => x.IdPedido == id).
                 Include(dp => dp.DetallesPedidos).FirstOrDefaultAsync();
 
-            return await pedido;
+            return pedido;
+        }
+
+        public Task<PedidoDto> GetByIdPedidoDto(int id)
+        {
+             return _context.Pedidos
+               .Include(p => p.IdFormaPagoNavigation)
+               .Include(p => p.IdClienteNavigation)
+               .Include(p => p.LegajoEmpNavigation)
+               .Select(p => new PedidoDto
+               {
+                   IdPedido = p.IdPedido,
+                   NombreCliente = p.IdClienteNavigation.Nombre + ' ' + p.IdClienteNavigation.Apellido,
+                   NombreEmpleado = p.LegajoEmpNavigation.Nombre + ' ' + p.LegajoEmpNavigation.Apellido,
+                   FechaPedido = p.FechaPedido,
+                   Total = p.DetallesPedidos
+                           .Sum(detalle => detalle.Cantidad * detalle.PrecioUnitario * (1 - (detalle.Descuento ?? 0) / 100))
+                           * (p.IdFormaPagoNavigation.Recargo.HasValue
+                               ? (1 + p.IdFormaPagoNavigation.Recargo.Value / 100)
+                               : (p.IdFormaPagoNavigation.Descuento.HasValue
+                                   ? (1 - p.IdFormaPagoNavigation.Descuento.Value / 100)
+                                   : 1)),
+                   Estado = p.Estado,
+                   NombreFormaPago = p.IdFormaPagoNavigation.NombreFormaPago
+               }).FirstOrDefaultAsync(p => p.IdPedido == id);
         }
 
         public async Task<List<PedidoDto>> GetPedidosFiltros(DateTime? fechaDesde, DateTime? fechaHasta, int? idFormaPago, string? estado)
@@ -76,9 +117,8 @@ namespace TiendaPc.DLL.Data.Repository
             {
                 return false; // El pedido no existe
             }
-
-            // Verifica si el pedido no está cancelado
-            if (pedido.Estado != "Cancelado")
+            // Verifica si el pedido no está cancelado o si ya fue entregado
+            if (pedido.Estado != "Cancelado" || pedido.Estado != "Entregado")
             {
                 pedido.Estado = "Cancelado";
                 pedido.FechaCancelacion = DateTime.Now;
@@ -94,8 +134,12 @@ namespace TiendaPc.DLL.Data.Repository
 
         public async Task<bool> Save(Pedido pedido)
         {
+            if (!pedido.ArmadoPc)   
+            {
+                pedido.PrecioArmadoPc = null;
+            }
             pedido.FechaPedido = DateTime.Now;
-            pedido.Estado = "Cancelado";
+            pedido.Estado = "Pendiente";
             _context.Pedidos.Add(pedido);
             return await _context.SaveChangesAsync() > 0;
         }

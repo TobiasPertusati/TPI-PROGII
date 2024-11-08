@@ -57,7 +57,7 @@ namespace TiendaPc.API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "error interno: " + ex.ToString());
+                return StatusCode(500, new { message = "Error interno: " + ex.ToString() });
             }
         }
 
@@ -74,7 +74,8 @@ namespace TiendaPc.API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "error interno: " + ex.ToString());
+                return StatusCode(500, new { message = "Error interno: " + ex.ToString() });
+
             }
         }
 

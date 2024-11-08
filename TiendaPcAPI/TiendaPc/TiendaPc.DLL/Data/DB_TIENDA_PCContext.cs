@@ -15,7 +15,7 @@ public partial class DB_TIENDA_PCContext : DbContext
 
     public virtual DbSet<Barrio> Barrios { get; set; }
 
-    public virtual DbSet<CategoriaFiscal> CategoriasFiscals { get; set; }
+    public virtual DbSet<CategoriaFiscal> CategoriasFiscales { get; set; }
 
     public virtual DbSet<Ciudad> Ciudades { get; set; }
 
@@ -122,6 +122,10 @@ public partial class DB_TIENDA_PCContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("apellido");
+            entity.Property(e => e.Email)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("email");
             entity.Property(e => e.Direccion)
                 .IsRequired()
                 .HasMaxLength(100)

@@ -1995,3 +1995,42 @@ set estado = 1
 
 ALTER TABLE Componentes
 ALTER COLUMN estado BIT NOT NULl
+
+ALTER TABLE CLIENTES
+ADD email varchar(100)
+
+update CLIENTES set email = 'juan.perez@gmail.com' where id_cliente = 1
+update CLIENTES set email = 'ana_gomez@gmail.com' where id_cliente = 2
+update CLIENTES set email = 'luis_martinez@instagram.com' where id_cliente = 3
+update CLIENTES set email = 'maria_rodriguez@gmail.com' where id_cliente = 4
+update CLIENTES set email = 'CarlosGarcía@gmail.com' where id_cliente = 5
+update CLIENTES set email = 'laura.fernandez@instagram.com' where id_cliente = 6
+update CLIENTES set email = 'jose_lopez@gmail.com' where id_cliente = 7
+update CLIENTES set email = 'sofia.sanchez@gmail.com' where id_cliente = 8
+update CLIENTES set email = 'MiguelCruz@gmail.com' where id_cliente = 9
+update CLIENTES set email = 'paula.benitez@gmail.com' where id_cliente = 10
+
+
+
+---TRIGGER PARA controlar y actualizar Stock-------------------------------
+--CREATE TRIGGER dis_updStock
+--ON DETALLES_PEDIDOS
+--AFTER Insert
+--AS
+--BEGIN
+--	IF EXISTS (SELECT 1 FROM inserted I			---Si la cantidad que se pide supera el stock disponible, revertir transaccion
+--				JOIN Componentes C ON C.id_componente = I.id_componente
+--				WHERE I.cantidad > C.stock
+--				)
+--			BEGIN
+--				ROLLBACK TRANSACTION;
+--				THROW 50000, 'No hay suficiente stock para la venta.', 1;
+--				 RETURN;--termina el proceso
+--			END
+
+--	Update C
+--	SET stock = C.stock - I.cantidad
+--	FROM Componentes C 
+--	JOIN inserted I ON C.id_componente = I.id_componente;
+
+--END;

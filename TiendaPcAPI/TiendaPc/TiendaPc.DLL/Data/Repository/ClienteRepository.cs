@@ -44,6 +44,13 @@ namespace TiendaPc.DLL.Data.Repository
 
         }
 
+        public async Task<List<Cliente>> GetAllFiltro(string filtro)
+        {
+            var clientes = await _context.Clientes.
+                Where(c => c.Nombre.ToLower().Contains(filtro.ToLower()) || c.Apellido.ToLower().Contains(filtro.ToLower())).ToListAsync();
+            return clientes;
+        }
+
         public async Task<Cliente> GetById(int id)
         {
             var cliente = await _context.Clientes.FindAsync(id);

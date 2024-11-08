@@ -32,7 +32,6 @@ public partial class Pedido
 
     public string MotivoCancelacion { get; set; }
 
-    [JsonIgnore]
     public virtual ICollection<DetallePedido> DetallesPedidos { get; set; } = new List<DetallePedido>();
     [JsonIgnore]
     public virtual CategoriaFiscal IdCategoriaFiscalNavigation { get; set; }

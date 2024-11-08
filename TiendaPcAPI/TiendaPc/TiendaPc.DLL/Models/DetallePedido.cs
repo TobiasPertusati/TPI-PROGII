@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace TiendaPc.DLL.Models;
 
@@ -19,7 +20,9 @@ public partial class DetallePedido
 
     public decimal PrecioUnitario { get; set; }
 
+    [JsonIgnore]
     public virtual Componente IdComponenteNavigation { get; set; }
+    [JsonIgnore]
 
     public virtual Pedido IdPedidoNavigation { get; set; }
 }

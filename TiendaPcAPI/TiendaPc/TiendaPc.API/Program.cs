@@ -5,6 +5,8 @@ using TiendaPc.DLL.Models;
 using TiendaPc.DLL.Services.Interfaces;
 using TiendaPc.DLL.Services;
 using TiendaPc.DLL.Data.Repository.Interfaces;
+using WebApplication1.Services.Interfaces;
+using WebApplication1.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,7 +34,9 @@ builder.Services.AddScoped<ITipoDocumentoRepository, TipoDocumentoRepository>();
 builder.Services.AddScoped<IProvinciaRepositoy, ProvinciaRepository>();
 builder.Services.AddScoped<ICiudadRepository, CiudadRepository>();
 builder.Services.AddScoped<IBarrioRepository, BarrioRepository>();
-
+builder.Services.AddScoped<ICategoriaFiscalRepository, CategoriaFiscalRepository>();
+builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
+builder.Services.AddScoped<IEmpleadoDto, EmpleadoDtoRepository>();
 
 //Inyeccion de dependencia en los servicios
 builder.Services.AddScoped<IPedidoService, PedidoService>();
@@ -48,6 +52,9 @@ builder.Services.AddScoped<ITipoDocumentoService, TipoDocumentoService>();
 builder.Services.AddScoped<IProvinciaService, ProvinciaService>();
 builder.Services.AddScoped<ICiudadService, CiudadService>();
 builder.Services.AddScoped<IBarrioService, BarrioService>();
+builder.Services.AddScoped<ICategoriaFiscalService, CategoriaFiscalService>();
+builder.Services.AddScoped<IDashboardService, DashboardService>();
+builder.Services.AddScoped<IEmpleadoDtoService, EmpleadoDtoService>();
 
 
 builder.Services.AddCors(options =>

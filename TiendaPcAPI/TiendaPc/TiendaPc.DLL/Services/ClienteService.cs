@@ -28,6 +28,11 @@ namespace TiendaPc.DLL.Services
             return await _clienteRepository.GetAll();
         }
 
+        public async Task<List<Cliente>> GetAllFiltro(string filtro)
+        {
+            return await _clienteRepository.GetAllFiltro(filtro);
+        }
+
         public async Task<Cliente> GetById(int id)
         {
             return await _clienteRepository.GetById(id);

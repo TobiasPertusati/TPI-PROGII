@@ -14,9 +14,9 @@ namespace TiendaPc.API.Controllers
         {
             _service = service;
         }
+
+
         [HttpGet("GetAll-CategoriasFiscales")]
-
-
         public async Task<IActionResult> GetAllAsync()
         {
             try

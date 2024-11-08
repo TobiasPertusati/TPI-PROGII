@@ -21,9 +21,19 @@ public class PedidoService : IPedidoService
         return await _pedidoRepository.GetAll();
     }
 
+    public async Task<List<DetallePedidoDto>> GetAllDetallesPedido(int idPedido)
+    {
+        return await _pedidoRepository.GetAllDetallesPedido(idPedido);
+    }
+
     public async Task<Pedido> GetById(int id)
     {
         return await _pedidoRepository.GetById(id);
+    }
+
+    public async Task<PedidoDto> GetByIdPedidoDto(int id)
+    {
+        return await _pedidoRepository.GetByIdPedidoDto(id);
     }
 
     public async Task<List<PedidoDto>> GetPedidosFiltros(DateTime? fechaDesde, DateTime? fechaHasta, int? idFormaPago, string? estado) 

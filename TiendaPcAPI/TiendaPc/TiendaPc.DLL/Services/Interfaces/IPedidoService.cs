@@ -7,6 +7,8 @@ public interface IPedidoService
 {
     Task<List<Pedido>> GetAll();
     Task<Pedido> GetById(int id);
+    Task<PedidoDto> GetByIdPedidoDto(int id);
+    Task<List<DetallePedidoDto>> GetAllDetallesPedido(int idPedido);
     Task<List<PedidoDto>> GetPedidosFiltros(DateTime? fechaDesde, DateTime? fechaHasta, int? idFormaPago, string? estado);
     Task<List<Pedido>> GetPedidosPCArmadas();
     Task<bool> Save(Pedido pedido); //post pedido

@@ -18,7 +18,7 @@ namespace TiendaPc.DLL.Data.Repository
         }
         public async Task<List<CategoriaFiscal>> GetAllAsync()
         {
-           return await _context.CategoriasFiscals.ToListAsync();
+           return await _context.CategoriasFiscales.ToListAsync();
         }
     }
 }
