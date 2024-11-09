@@ -45,7 +45,7 @@
       <div class="sidebar-logo">
         <!-- Logo Header -->
         <div class="logo-header" data-background-color="dark">
-          <a href="index.html" class="logo">
+          <a href="dashboard.html" class="logo">
             <img src="assets/img/logo.png" alt="navbar brand" class="navbar-brand" height="60" />
           </a>
           <div class="nav-toggle">
@@ -107,11 +107,6 @@
                       <span class="sub-item">Listado Componentes</span>
                     </a>
                   </li>
-                  <li>
-                    <a href="nuevoComponente.html">
-                      <span class="sub-item">Nuevo Componente</span>
-                    </a>
-                  </li>
                 </ul>
               </div>
             </li>
@@ -129,7 +124,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="#" role="button">
+                    <a href="#" role="button" onclick="cerrarSesion()">
                       <span class="sub-item">Cerrar Sesión</span>
                       <i class="fas fa-sign-out-alt"></i>
                     </a>
@@ -286,6 +281,15 @@
           </div>
         </footer>
     </div>
+    <script>
+      function cerrarSesion() {
+        // Aquí puedes eliminar el token de autenticación o limpiar la sesión si es necesario
+        localStorage.removeItem("legajoEmp");
+  
+        // Redirige a la página de inicio de sesión
+        window.location.href = "login.html";
+      }
+    </script>
     <script src="dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- End Custom template -->

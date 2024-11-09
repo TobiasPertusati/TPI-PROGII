@@ -24,3 +24,15 @@ C:\Users\Pertu\Desktop\RepoEjerciosClases\TPI\TPI-PROGII-pertu\TiendaPcAPI\Tiend
 C:\Users\Pertu\Desktop\RepoEjerciosClases\TPI\TPI-PROGII-pertu\TiendaPcAPI\TiendaPc\TiendaPc.DLL\obj\Debug\net8.0\refint\TiendaPc.DLL.dll
 C:\Users\Pertu\Desktop\RepoEjerciosClases\TPI\TPI-PROGII-pertu\TiendaPcAPI\TiendaPc\TiendaPc.DLL\obj\Debug\net8.0\TiendaPc.DLL.pdb
 C:\Users\Pertu\Desktop\RepoEjerciosClases\TPI\TPI-PROGII-pertu\TiendaPcAPI\TiendaPc\TiendaPc.DLL\obj\Debug\net8.0\ref\TiendaPc.DLL.dll
+C:\Users\Pertu\Desktop\TPI ENTREGA FINAL\TPI-PROGII-pertu\TiendaPcAPI\TiendaPc\TiendaPc.DLL\bin\Debug\net8.0\TiendaPc.DLL.deps.json
+C:\Users\Pertu\Desktop\TPI ENTREGA FINAL\TPI-PROGII-pertu\TiendaPcAPI\TiendaPc\TiendaPc.DLL\bin\Debug\net8.0\TiendaPc.DLL.dll
+C:\Users\Pertu\Desktop\TPI ENTREGA FINAL\TPI-PROGII-pertu\TiendaPcAPI\TiendaPc\TiendaPc.DLL\bin\Debug\net8.0\TiendaPc.DLL.pdb
+C:\Users\Pertu\Desktop\TPI ENTREGA FINAL\TPI-PROGII-pertu\TiendaPcAPI\TiendaPc\TiendaPc.DLL\obj\Debug\net8.0\TiendaPc.DLL.csproj.AssemblyReference.cache
+C:\Users\Pertu\Desktop\TPI ENTREGA FINAL\TPI-PROGII-pertu\TiendaPcAPI\TiendaPc\TiendaPc.DLL\obj\Debug\net8.0\TiendaPc.DLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Pertu\Desktop\TPI ENTREGA FINAL\TPI-PROGII-pertu\TiendaPcAPI\TiendaPc\TiendaPc.DLL\obj\Debug\net8.0\TiendaPc.DLL.AssemblyInfoInputs.cache
+C:\Users\Pertu\Desktop\TPI ENTREGA FINAL\TPI-PROGII-pertu\TiendaPcAPI\TiendaPc\TiendaPc.DLL\obj\Debug\net8.0\TiendaPc.DLL.AssemblyInfo.cs
+C:\Users\Pertu\Desktop\TPI ENTREGA FINAL\TPI-PROGII-pertu\TiendaPcAPI\TiendaPc\TiendaPc.DLL\obj\Debug\net8.0\TiendaPc.DLL.csproj.CoreCompileInputs.cache
+C:\Users\Pertu\Desktop\TPI ENTREGA FINAL\TPI-PROGII-pertu\TiendaPcAPI\TiendaPc\TiendaPc.DLL\obj\Debug\net8.0\TiendaPc.DLL.dll
+C:\Users\Pertu\Desktop\TPI ENTREGA FINAL\TPI-PROGII-pertu\TiendaPcAPI\TiendaPc\TiendaPc.DLL\obj\Debug\net8.0\refint\TiendaPc.DLL.dll
+C:\Users\Pertu\Desktop\TPI ENTREGA FINAL\TPI-PROGII-pertu\TiendaPcAPI\TiendaPc\TiendaPc.DLL\obj\Debug\net8.0\TiendaPc.DLL.pdb
+C:\Users\Pertu\Desktop\TPI ENTREGA FINAL\TPI-PROGII-pertu\TiendaPcAPI\TiendaPc\TiendaPc.DLL\obj\Debug\net8.0\ref\TiendaPc.DLL.dll

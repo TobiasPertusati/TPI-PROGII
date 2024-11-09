@@ -490,9 +490,94 @@ document.getElementById('cargarPedido').addEventListener('click', function (e) {
     e.preventDefault();
     cargarPedido();
 });
+async function verificarStockComponente(idComponente, cantidad) {
+    try {
+        const response = await fetch(`https://localhost:7119/api/Componente/GetById-Componente?id=${idComponente}`);
+        if (!response.ok) {
+            throw new Error("No se encontró el componente o hubo un error en la solicitud.");
+        }
+        const componente = await response.json();
+        console.log(componente.stock);
+        
+        // Comprobar si la cantidad solicitada supera el stock disponible
+        if (cantidad > componente.stock) {
+            swal("!Error!", `El componente ${componente.nombre} no tiene suficiente stock. Stock disponible: ${componente.stock}.`, "error");
+            return false;
+        }
+        return true;
+    } catch (error) {
+        console.error("Error al verificar el stock del componente:", error);
+        swal("!Error!", "No se pudo verificar el stock del componente. Intente nuevamente.", "error");
+        return false;
+    }
+}
+
+async function validarPedido() {
+    // Verificar si los campos principales están completos
+    const idCliente = document.getElementById('ddlClientes').value;
+    const idFormaPago = document.getElementById('ddlFormaPago').value;
+    const idCategoriaFiscal = document.getElementById('ddlCategoriaFiscal').value;
+    const idFormaEntrega = document.getElementById('ddlTipoEntrega').value;
+    const legajoEmp = sessionStorage.getItem('legajoEmp'); // Obtener legajo del empleado
+
+    if (!legajoEmp) {
+        swal("!Error!", "Debe logearse primero.", "error");
+        return false;
+    }
+
+    if (!idCliente) {
+        swal("!Error!", "Seleccione un cliente.", "error");
+        return false;
+    }
+
+    if (!idFormaPago) {
+        swal("!Error!", "Seleccione una forma de pago.", "error");
+        return false;
+    }
+
+    if (!idCategoriaFiscal) {
+        swal("!Error!", "Seleccione una categoría fiscal.", "error");
+        return false;
+    }
+
+    if (!idFormaEntrega) {
+        swal("!Error!", "Seleccione un tipo de entrega.", "error");
+        return false;
+    }
+
+    // Verificar si hay al menos un detalle de pedido
+    const filasComponentes = document.querySelectorAll('#tablaComponentes tr');
+    if (filasComponentes.length === 0) {
+        swal("!Error!", "Debe agregar al menos un componente en el pedido.", "error");
+        return false;
+    }
+
+    // Verificar que cada componente tenga una cantidad válida
+    for (const fila of filasComponentes) {
+        const idComponente = fila.querySelector('td:nth-child(1)').textContent.trim();
+        const cantidad = parseInt(fila.querySelector('input[type="number"]').value, 10);
+        
+        if (isNaN(cantidad) || cantidad <= 0) {
+            swal("!Error!", "Cada componente debe tener una cantidad mayor a 0.", "error");
+            return false;
+        }
+
+        const stockValido = await verificarStockComponente(idComponente, cantidad);
+        if (!stockValido) {
+            return false; // Detiene la validación si algún componente no tiene suficiente stock
+        }
+        // consumir endpoint para que verifique que la cantidad de cada componente no supere el stock que se dispone del mismo
+
+    }
+
+    return true; // Todos los campos son válidos
+}
+
 
 async function cargarPedido() {
-
+    if (!validarPedido()) {
+        return; // Detiene el proceso si la validación falla
+    }
     const detallesPedidos = [];
     const filasComponentes = document.querySelectorAll('#tablaComponentes tr');
 
@@ -522,7 +607,7 @@ async function cargarPedido() {
         detallesPedidos: detallesPedidos
     };
 
-    console.log(pedido);
+    
     try {
         const response = await fetch('https://localhost:7119/api/Pedido/Nuevo-Pedido', {
             method: 'POST',

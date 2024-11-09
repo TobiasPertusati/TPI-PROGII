@@ -72,6 +72,10 @@ namespace TiendaPc.API.Controllers
 
                 return Ok(componente);
             }
+            catch (SqlException ex)
+            {
+                return StatusCode(500, new { message = "Error interno: " + ex.ToString() });
+            }
             catch (Exception ex)
             {
                 return StatusCode(500, new { message = "Error interno: " + ex.ToString() });

@@ -2748,19 +2748,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\tobia\\.nuget\\packages\\": {}
+    "C:\\Users\\Pertu\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.DLL\\TiendaPc.DLL.csproj",
+      "projectUniqueName": "C:\\Users\\Pertu\\Desktop\\TPI ENTREGA FINAL\\TPI-PROGII-pertu\\TiendaPcAPI\\TiendaPc\\TiendaPc.DLL\\TiendaPc.DLL.csproj",
       "projectName": "TiendaPc.DLL",
-      "projectPath": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.DLL\\TiendaPc.DLL.csproj",
-      "packagesPath": "C:\\Users\\tobia\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\tobia\\Desktop\\TUP\\Repos\\TPI\\TiendaPcAPI\\TiendaPc\\TiendaPc.DLL\\obj\\",
+      "projectPath": "C:\\Users\\Pertu\\Desktop\\TPI ENTREGA FINAL\\TPI-PROGII-pertu\\TiendaPcAPI\\TiendaPc\\TiendaPc.DLL\\TiendaPc.DLL.csproj",
+      "packagesPath": "C:\\Users\\Pertu\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Pertu\\Desktop\\TPI ENTREGA FINAL\\TPI-PROGII-pertu\\TiendaPcAPI\\TiendaPc\\TiendaPc.DLL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\tobia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Pertu\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2813,7 +2813,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

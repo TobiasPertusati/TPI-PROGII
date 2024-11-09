@@ -41,7 +41,7 @@ namespace TiendaPc.API.Controllers
                 var validEmpleado = await _empleadoService.ValidateCredentialsAsync(legajoEmp, pass);
                 if (!validEmpleado )
                 {
-                    return BadRequest("credenciales no fueron validas");
+                    return NotFound("Credenciales no fueron validas");
                 }
                 return Ok(validEmpleado);
             }

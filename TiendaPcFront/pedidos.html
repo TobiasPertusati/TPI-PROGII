@@ -48,7 +48,7 @@
         <div class="sidebar-logo">
           <!-- Logo Header -->
           <div class="logo-header" data-background-color="dark">
-            <a href="index.html" class="logo">
+            <a href="dashboard.html" class="logo">
               <img
                 src="assets/img/logo.png"
                 alt="navbar brand"
@@ -132,7 +132,7 @@
                       </a>
                     </li>
                     <li>
-                      <a href="#" role="button">
+                      <a href="#" role="button" onclick="cerrarSesion()">
                         <span class="sub-item">Cerrar Sesión</span>
                         <i class="fas fa-sign-out-alt"></i>
                       </a>
@@ -150,7 +150,7 @@
           <div class="main-header-logo">
            
             <div class="logo-header" data-background-color="dark">
-              <a href="index.html">
+              <a href="dashboard.html">
                   <img src="assets/img/logo.png" alt="logo-tienda-pc">
               </a>
             </div>
@@ -305,6 +305,15 @@
       
       <!-- End Custom template -->
       <!-- Core JS Files  -->
+      <script>
+        function cerrarSesion() {
+          // Aquí puedes eliminar el token de autenticación o limpiar la sesión si es necesario
+          localStorage.removeItem("legajoEmp");
+    
+          // Redirige a la página de inicio de sesión
+          window.location.href = "login.html";
+        }
+      </script>
     <script src="Pedidos.js"></script>
     <script src="assets/js/core/jquery-3.7.1.min.js"></script>
     <script src="assets/js/core/popper.min.js"></script>

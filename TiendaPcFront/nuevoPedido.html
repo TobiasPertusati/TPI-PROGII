@@ -54,7 +54,7 @@
       <div class="sidebar-logo">
         <!-- Logo Header -->
         <div class="logo-header" data-background-color="dark">
-          <a href="index.html" class="logo">
+          <a href="dashboard.html" class="logo">
             <img src="assets/img/logo.png" alt="navbar brand" class="navbar-brand" height="60" />
           </a>
           <div class="nav-toggle">
@@ -133,7 +133,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="#" role="button">
+                    <a href="#" role="button" onclick="cerrarSesion()">
                       <span class="sub-item">Cerrar Sesión</span>
                       <i class="fas fa-sign-out-alt"></i>
                     </a>
@@ -151,7 +151,7 @@
         <div class="main-header-logo">
 
           <div class="logo-header" data-background-color="dark">
-            <a href="index.html">
+            <a href="dashboard.html">
               <img src="assets/img/logo.png" alt="logo-tienda-pc">
             </a>
           </div>
@@ -387,6 +387,15 @@
 
   <!-- End Custom template -->
   <!-- Core JS Files  -->
+  <script>
+    function cerrarSesion() {
+      // Aquí puedes eliminar el token de autenticación o limpiar la sesión si es necesario
+      localStorage.removeItem("legajoEmp");
+
+      // Redirige a la página de inicio de sesión
+      window.location.href = "login.html";
+    }
+  </script>
   <script src="nuevoPedido.js"></script>
   <script src="assets/js/core/jquery-3.7.1.min.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
@@ -422,80 +431,3 @@
 </body>
 
 </html>
-                             <!-- NUEVO CLIENTE -->
-                              <!-- <form id="formularioCliente">
-                                <div class="row">
-                                  <div class="col-md-6 col-lg-6">
-                                    <div class="nuevo-cliente mt-3">
-                                      <div class="form-group">
-                                        <label for="nombreCliente">Nombre</label>
-                                        <input type="text" class="form-control" id="nombreCliente" placeholder="Ingrese Nombre">
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="nombreCliente">Apellido</label>
-                                        <input type="text" class="form-control" id="nombreCliente" placeholder="Ingrese Apellido">
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="email2">Email Address</label>
-                                        <input type="email" class="form-control" id="email2" placeholder="Ingrese Email">
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="exampleFormControlSelect1">Tipo Documento</label>
-                                        <select class="form-select" id="exampleFormControlSelect1">
-                                          <option>1</option>
-                                          <option>2</option>
-                                          <option>3</option>
-                                          <option>4</option>
-                                          <option>5</option>
-                                        </select>
-                                      </div>
-                                      <div class="form-group mt-2">
-                                        <label for="documentoCliente">Documento</label>
-                                        <input type="number" class="form-control" id="documentoCliente" placeholder="Ingrese Documento">
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="fechaNacCliente">Fecha Nacimiento</label>
-                                        <input type="date" class="form-control" id="fechaNacCliente">
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-6 col-lg-6">
-                                    <div class="nuevo-cliente">
-                                      <div class="form-group mt-4 mb-2">
-                                        <label for="ddlProvincias">Provincia</label>
-                                        <select class="form-select" id="ddlProvincias">
-          
-                                        </select>
-                                      </div>
-                                      <div class="form-group mb-2">
-                                        <label for="ddlCiudades">Ciudad</label>
-                                        <select class="form-select" id="ddlCiudades">
-          
-                                        </select>
-                                      </div>
-                                      <div class="form-group mb-1">
-                                        <label for="ddlBarrios">Barrio</label>
-                                        <select class="form-select" id="ddlBarrios">
-                                          
-                                        </select>
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="direccionCliente">Dirección</label>
-                                        <input type="text" class="form-control" id="direccionCliente" placeholder="Ingrese direccion del domicilio del cliente">
-                                      </div>
-                                      <div class="form-group mb-4">
-                                        <label for="alturaCliente">Altura</label>
-                                        <input type="number" class="form-control" id="nroCalleCliente" placeholder="Ingrese solo la altura (numeros)">
-                                      </div>
-                                      <div class="form-group mt-3 justify-content-center d-flex">
-                                        <button class="btn btn-success" onclick="guardarDatosCliente()">
-                                          <span class="btn-label">
-                                            <i class="fa fa-user-check"></i>
-                                          </span>
-                                          Guardar
-                                        </button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </form> -->
