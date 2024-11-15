@@ -136,6 +136,7 @@ public partial class DB_TIENDA_PCContext : DbContext
                 .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasColumnName("documento");
+            entity.Property(e => e.GamerCoins).HasColumnName("gamer_coins");
             entity.Property(e => e.Estado).HasColumnName("estado");
             entity.Property(e => e.IdBarrio).HasColumnName("id_barrio");
             entity.Property(e => e.IdTipoDoc).HasColumnName("id_tipo_doc");
@@ -420,6 +421,9 @@ public partial class DB_TIENDA_PCContext : DbContext
             entity.Property(e => e.PrecioArmadoPc)
                 .HasColumnType("decimal(18, 2)")
                 .HasColumnName("precio_armado_pc");
+            entity.Property(e => e.DescGamerCoins)
+                .HasColumnType("decimal(5,2)")
+                .HasColumnName("desc_gamer_coins");
 
             entity.HasOne(d => d.IdCategoriaFiscalNavigation).WithMany(p => p.Pedidos)
                 .HasForeignKey(d => d.IdCategoriaFiscal)

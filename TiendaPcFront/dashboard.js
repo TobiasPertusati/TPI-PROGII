@@ -17,21 +17,22 @@ document.addEventListener('DOMContentLoaded', async function getNroVentasMesActu
   }
 });
 //tarjetita de totalventas
-document.addEventListener('DOMContentLoaded', async function (){
-  const ventasMes = document.getElementById('ventasMes');
-  try {
-    const response = await fetch('https://localhost:7119/api/Dashboard/GetFacturacionDeEsteMes');
-    if(!response.ok){
-      throw new Error('Error en la respuesta del servidor');
+document.addEventListener('DOMContentLoaded', async function () {
+    const ventasMes = document.getElementById('ventasMes');
+    try {
+      const response = await fetch('https://localhost:7119/api/Dashboard/GetFacturacionDeEsteMes');
+      if (!response.ok) {
+        throw new Error('Error en la respuesta del servidor');
+      }
+      const data = await response.text(); // Cambié .json() a .text() ya que el servidor devuelve un string
+      console.log('Respuesta del servidor:', data); // Depuración
+      ventasMes.textContent = data; // Asignación del string al contenido del elemento
+    } catch (error) {
+      console.log('Error al obtener los datos', error);
     }
-    const data = await response.json();
-    ventasMes.textContent = data;
-  }
-  catch(error){
-    console.log('Error al obtener los datos', error);
-    
-  }
-})
+  });
+  
+  
 
 //tarjetita clientes
 document.addEventListener('DOMContentLoaded', async function loadCantClientes(){
@@ -88,7 +89,20 @@ async function cargarEstadisticas() {
             colImporteTotal.textContent = "Unidades Vendidas";
             colPromedioVenta.textContent = "Total Facturado";
             break;
-
+        case 'Ultimos5Clientes':
+            tableTitle.textContent = 'Ultimas 5 Visitas a TiendaPC';
+            colMarca.textContent = 'Cliente';
+            colTotalVentas.textContent = 'Forma de Pago';
+            colImporteTotal.textContent = 'Fecha Pedido';
+            colPromedioVenta.textContent = 'Importe Total'
+            break;
+        case 'PedidosConMayorImporte':
+            tableTitle.textContent = 'Pedidos Más Grandes del Año';
+            colMarca.textContent = 'ID PEDIDO';
+            colTotalVentas.textContent = 'Cliente';
+            colImporteTotal.textContent = 'FECHA PEDIDO';
+            colPromedioVenta.textContent = 'IMPORTE TOTAL';
+            break;
         default:
             tableTitle.textContent = "Estadísticas de Ventas";
             break;
@@ -126,26 +140,70 @@ async function cargarEstadisticas() {
 
             // Ajustar el mapeo de datos según el endpoint
             if (endpoint === 'GetEstadisticasMarcas') {
+
                 tr.innerHTML = `
                     <td>${item.marcas}</td>
                     <td>${item.totalVentas}</td>
-                    <td>${item.importeTotal.toFixed(2)}</td>
-                    <td>${item.promedioVenta.toFixed(2)}</td>
+                    <td>${item.importeTotal.toLocaleString("es-AR", { style: "currency", currency: "ARS" })}</td>
+                    <td>${item.promedioVenta.toLocaleString("es-AR", { style: "currency", currency: "ARS" })}</td>
                 `;
             } else if (endpoint === 'GetInformeTipoComponentes') {
                 tr.innerHTML = `
                     <td>${item.tipoComponente}</td>
                     <td>${item.ventasDelTipo}</td>
-                    <td>${item.importeTotal}</td>
-                    <td>${item.promedioVenta}</td>
+                    <td>${item.importeTotal.toLocaleString("es-AR", { style: "currency", currency: "ARS" })}</td>
+                    <td>${item.promedioVenta.toLocaleString("es-AR", { style: "currency", currency: "ARS" })}</td>
                 `;
             } else if (endpoint === 'GetVentasComponentes') {
                 tr.innerHTML = `
                     <td>${item.nombreComponente}</td>
                     <td>${item.marcaComponente}</td>
                     <td>${item.totalUnidadesVendidas}</td>
-                    <td>${item.ingresoTotalGenerado}</td>
+                    <td>${item.ingresoTotalGenerado.toLocaleString("es-AR", { style: "currency", currency: "ARS" })}</td>
                     
+                `;
+            } else if (endpoint === 'Ultimos5Clientes'){
+
+                 // Convertir item.fechaPedido a un objeto Date
+                const fecha = new Date(item.fechaPedido);
+
+                // Formatear la fecha con hora, minutos y segundos
+                const fechaFormateada = fecha.toLocaleString('es-ES', { // Puedes usar el local que prefieras
+                weekday: 'short',   // Muestra el día de la semana abreviado
+                year: 'numeric',    // Muestra el año con 4 dígitos
+                month: '2-digit',   // Muestra el mes con 2 dígitos
+                day: '2-digit',     // Muestra el día con 2 dígitos
+                hour: '2-digit',    // Muestra la hora con 2 dígitos
+                minute: '2-digit',  // Muestra los minutos con 2 dígitos
+                second: '2-digit'   // Muestra los segundos con 2 dígitos
+                });
+
+                tr.innerHTML = `
+                    <td>${item.cliente}</td>
+                    <td>${item.formaPago}</td>
+                    <td>${fechaFormateada}</td>
+                    <td>${item.importe}</td>
+                `;
+            } else if (endpoint === 'PedidosConMayorImporte'){
+
+                const fecha = new Date(item.fechaPedido);
+
+                // Formatear la fecha con hora, minutos y segundos
+                const fechaMormat = fecha.toLocaleString('es-ES', { // Puedes usar el local que prefieras
+                weekday: 'short',   // Muestra el día de la semana abreviado
+                year: 'numeric',    // Muestra el año con 4 dígitos
+                month: '2-digit',   // Muestra el mes con 2 dígitos
+                day: '2-digit',     // Muestra el día con 2 dígitos
+                hour: '2-digit',    // Muestra la hora con 2 dígitos
+                minute: '2-digit',  // Muestra los minutos con 2 dígitos
+                second: '2-digit'   // Muestra los segundos con 2 dígitos
+                });
+
+                tr.innerHTML = `
+                    <td>${item.idPedido}</td>
+                    <td>${item.cliente}</td>
+                    <td>${fechaMormat}</td>
+                    <td>${item.importe}</td>
                 `;
             }
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,12 +64,38 @@ namespace TiendaPc.DLL.Data.Repository
 
         public async Task<bool> Save(Cliente cliente)
         {
+
             if(cliente == null)
             {
                 throw new ArgumentNullException(nameof(cliente), "El objeto cliente no puede ser nulo.");
             }
-            _context.Clientes.Add(cliente);
-            return await _context.SaveChangesAsync() > 0;
+            // agarre Y HAGA UN SP;
+            try
+            {
+                var parameters = new[]
+                {
+                            new SqlParameter("@nombre", cliente.Nombre),
+                            new SqlParameter("@apellido", cliente.Apellido),
+                            new SqlParameter("@email", cliente.Email),
+                            new SqlParameter("@direccion", cliente.Direccion),
+                            new SqlParameter("@nro_calle", cliente.NroCalle),
+                            new SqlParameter("@id_tipo_doc", cliente.IdTipoDoc),
+                            new SqlParameter("@id_barrio", cliente.IdBarrio),
+                            new SqlParameter("@documento", cliente.Documento)    
+                };
+                await _context.Database.ExecuteSqlRawAsync("EXEC SP_NUEVO_CLIENTE @nombre, @apellido, @email, @direccion," +
+                                                            " @nro_calle, @id_tipo_doc, @id_barrio, @documento", parameters);
+            }
+            catch (SqlException ex) // Captura excepción SQL
+            {
+                // Lanza la excepción para que el controlador la maneje
+                throw new Exception(ex.Message, ex);
+            }
+            //catch (Exception ex)
+            //{
+            //    throw new Exception("Error inesperado al guardar el cliente.", ex);
+            //}
+            return true;
         }
 
         public async Task<bool> UpdateCliente(Cliente cliente)

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TiendaPc.DLL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+294caa810fa5ff1bdc1fd7a116093784e34d14c8")]
 [assembly: System.Reflection.AssemblyProductAttribute("TiendaPc.DLL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TiendaPc.DLL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

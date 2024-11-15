@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -65,6 +66,7 @@ namespace TiendaPc.DLL.Data.Repository
                                             .Where(f => f.IdComponente == id).FirstOrDefaultAsync();
         }
 
+
         public async Task<bool> LowComponenteAsycn(int id)
         {
             Componente c = await GetByIdAsync(id);
@@ -79,6 +81,62 @@ namespace TiendaPc.DLL.Data.Repository
         {
             _context.Componentes.Update(componente);
             return await _context.SaveChangesAsync() > 0 ? true : false;
+        }
+
+        public async Task<Especificacion> GetEspecificacionById(int id)
+        {
+           return await _context.Especificaciones.FindAsync(id);
+        }
+
+        public async Task<bool> nuevaEspecificacion(Especificacion especificacion)
+        {
+            // HACER UN SP
+            try
+            {
+                var parameters = new[]
+                {
+                    new SqlParameter("@especificacion", especificacion.NombreEspecificacion),
+                };
+                await _context.Database.ExecuteSqlRawAsync("EXEC SP_NUEVA_ESPECIFICACION @especificacion", parameters);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public async Task<List<TipoComponenteEspecificacion>> GetAllTipoEspecificacion(int idComponente)
+        {
+            Componente componente =  await GetByIdAsync(idComponente);
+            return await _context.TiposComponentesEspecificaciones.Where(tc => tc.IdTipoComponente == componente.IdTipoComponente).ToListAsync();
+        }
+
+        public async Task<List<EspecificacionComponente>> GetAllEspecificacionesByIdComp(int idComponente)
+        {
+            return await _context.EspecificacionesComponentes.Where(ec => ec.IdComponente == idComponente).ToListAsync();
+        }
+
+
+        // TAMBIEN HACE UN UPDATE
+        public async Task<bool> nuevaEspecificacionComponente(EspecificacionComponente specComponente)
+        {
+            try
+            {
+                var parameters = new[]
+                {
+                            new SqlParameter("@id_spec_comp", specComponente.IdEspecComp),
+                            new SqlParameter("@id_comp", specComponente.IdComponente),
+                            new SqlParameter("@id_spec", specComponente.IdEspec),
+                            new SqlParameter("@valor", specComponente.Valor)
+                };
+                await _context.Database.ExecuteSqlRawAsync("EXEC SP_SAVE_ESPECIFIACION_COMPONENTES @id_spec_comp, @id_comp, @id_spec, @valor", parameters);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

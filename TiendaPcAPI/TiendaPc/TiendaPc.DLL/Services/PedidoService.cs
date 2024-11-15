@@ -16,6 +16,21 @@ public class PedidoService : IPedidoService
         _pedidoRepository = pedidoRepository;
     }
 
+    public async Task<bool> AsignarGamerCoins(int idCliente, decimal total, int cantidad)
+    {
+       return await _pedidoRepository.AsignarGamerCoins(idCliente, total, cantidad); 
+    }
+
+    public async Task<bool> ConfrimrOrder(int id)
+    {
+        return await _pedidoRepository.ConfrimrOrder(id);
+    }
+
+    public async Task<bool> DescontarGamerCoins(int idCliente)
+    {
+        return await _pedidoRepository.DescontarGamerCoins(idCliente);
+    }
+
     public async Task<List<Pedido>> GetAll()
     {
         return await _pedidoRepository.GetAll();

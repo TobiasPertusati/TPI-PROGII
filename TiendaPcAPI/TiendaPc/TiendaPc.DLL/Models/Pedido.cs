@@ -21,6 +21,7 @@ public partial class Pedido
     public bool ArmadoPc { get; set; }
 
     public decimal? PrecioArmadoPc { get; set; }
+    public decimal? DescGamerCoins { get; set; }
 
     public DateTime FechaPedido { get; set; }
 

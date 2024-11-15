@@ -13,6 +13,7 @@ public partial class Cliente
     public int IdBarrio { get; set; }
 
     public int IdTipoDoc { get; set; }
+    public int GamerCoins { get; set; }
 
     public string Documento { get; set; }
 

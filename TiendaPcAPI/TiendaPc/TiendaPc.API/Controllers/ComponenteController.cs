@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using System.ComponentModel;
+using System.Text.RegularExpressions;
 using TiendaPc.DLL.Models;
 using TiendaPc.DLL.Services.Interfaces;
 
@@ -134,5 +135,109 @@ namespace TiendaPc.API.Controllers
             }
         }
 
+        // CONTROLERS DE TESTEO IGNORAR
+
+        [HttpPost("nueva-spec")]
+        public async Task<IActionResult> nuevaSpec([FromBody] Especificacion spec)
+        {
+            try
+            {
+                bool res = await _service.nuevaEspecificacion(spec);
+                if (!res)
+                    return BadRequest(new { message = "No se pudo crear la nueva especificación" });
+
+                return Ok(new { message = "Especificación cargada con existo" });
+
+            }
+            catch (Exception ex)
+            {
+                // Buscar el id_spec en el mensaje de error
+                var regex = new Regex(@"ID de la especificación existente: (\d+)");
+                var match = regex.Match(ex.Message);
+
+                if (match.Success)
+                {
+                    // Extraer el id_spec si existe en el mensaje
+                    int idSpecExistente = int.Parse(match.Groups[1].Value);
+                    return BadRequest(new
+                    {
+                        message = "Ya existe una especificación con ese nombre",
+                        id_spec = idSpecExistente
+                    });
+                }
+                return StatusCode(500, "error interno: " + ex.ToString());
+            }
+        }
+        
+        [HttpGet("GetEspecificacionById")]
+        public async Task<IActionResult> GetEspecificacionById([FromQuery] int idEspecificacion)
+        {
+            try
+            {
+                var spec = await _service.GetEspecificacionById(idEspecificacion);
+                if (spec == null)
+                    return BadRequest(new { message = "No se encontro la especificación" });
+
+                return Ok(spec);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "error interno: " + ex.ToString());
+            }
+        }
+        [HttpGet("GetAll-TipoEspecificacion")]
+
+        public async Task<IActionResult> GetAllTipoEspecificacion([FromQuery] int idComponente)
+        {
+            try
+            {
+                var lst = await _service.GetAllTipoEspecificacion(idComponente);
+                if (lst.Count == 0)
+                    return BadRequest(new { message = "No se encontraron especificación para ese tipo de componente" });
+
+                return Ok(lst);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "error interno: " + ex.ToString());
+            }
+        } 
+        [HttpGet("GetAll-EspecificacionesByIdComp")]
+
+        public async Task<IActionResult> GetAllEspecificacionesByIdComp([FromQuery] int idComponente)
+        {
+            try
+            {
+                var lst = await _service.GetAllEspecificacionesByIdComp(idComponente);
+                if (lst.Count == 0)
+                    return BadRequest(new { message = "No se encontraron especificación para ese componente" });
+
+                return Ok(lst);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "error interno: " + ex.ToString());
+            }
+        }
+
+        [HttpPost("nueva-EspecificacionComponente")]
+        public async Task<IActionResult> nuevaEspecificacionComponente([FromBody] EspecificacionComponente specComp)
+        {
+            try
+            {
+                bool res = await _service.nuevaEspecificacionComponente(specComp);
+                if (!res)
+                    return BadRequest(new { message = "No se pudo crear la nueva especificación" });
+
+                return Ok(new { message = "Especificación cargada con existo" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "error interno: " + ex.ToString());
+            }
+        }
     }
 }

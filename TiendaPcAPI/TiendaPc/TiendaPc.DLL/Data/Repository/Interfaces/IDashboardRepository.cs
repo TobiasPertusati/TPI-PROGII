@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TiendaPc.API.DTO;
 using TiendaPc.DLL.DTO;
+using TiendaPc.DLL.Models.DTO;
 
 namespace TiendaPc.DLL.Data.Repository.Interfaces
 { 
@@ -15,7 +16,9 @@ namespace TiendaPc.DLL.Data.Repository.Interfaces
         Task<List<DTOVentasComponentes>> GetVentasComponentes();
         Task<List<DTOFacturacionPorMes>> GetFacturacionPorMes(int? year = null);
         Task<int> GetNumeroVentasMesActual();
-        Task<decimal> FacturacionDeEsteMes();
+        Task<string> FacturacionDeEsteMes();
         Task<int> GetCantidadClientes();
+        Task<List<PedidosMasGrandesDTO>> ObtenerPedidosConMayorImporte();
+        Task<List<Ultimos5ClientesDTO>> Ultimos5Clientes();
     }
 }

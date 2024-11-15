@@ -18,5 +18,16 @@ namespace TiendaPc.DLL.Data.Repository.Interfaces
         Task<bool> UpadateAsycn(Componente componente);
         Task<bool> CreateAsycn(Componente componente);
         Task<bool> LowComponenteAsycn(int id);
+
+
+        // testing no tomar en cuenta
+        Task<bool> nuevaEspecificacion(Especificacion especificacion);
+        Task<Especificacion> GetEspecificacionById(int id);
+
+        Task<List<TipoComponenteEspecificacion>> GetAllTipoEspecificacion(int idComponente);
+
+        Task<List<EspecificacionComponente>> GetAllEspecificacionesByIdComp(int idComponente);
+
+        Task<bool> nuevaEspecificacionComponente(EspecificacionComponente specComponente);
     }
 }

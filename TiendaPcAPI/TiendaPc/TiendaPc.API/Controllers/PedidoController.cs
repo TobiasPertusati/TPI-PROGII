@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System.Diagnostics;
 using TiendaPc.DLL.Models;
 using TiendaPc.DLL.Services.Interfaces;
@@ -42,7 +44,10 @@ namespace TiendaPc.API.Controllers
         {
             try
             {
-                return Ok(await _pedidoService.GetById(id));
+                var pedido = await _pedidoService.GetById(id);
+                if (pedido == null)
+                    return NotFound(new {message = "no se encontro tu pedido" });
+                return Ok(pedido);
             }
             catch (Exception ex)
             {
@@ -134,11 +139,24 @@ namespace TiendaPc.API.Controllers
                 {
                     return BadRequest(new { message = "El pedido no fue se pudo registrar" });
                 }
+                int idCliente = pedido.IdCliente;
+                decimal total = pedido.DetallesPedidos.Sum(detalle => detalle.Cantidad * detalle.PrecioUnitario * (1 - (detalle.Descuento ?? 0) / 100));
+                int cantidad = pedido.DetallesPedidos.Sum(d => d.Cantidad);
+                if(pedido.DescGamerCoins > 0)
+                    await _pedidoService.DescontarGamerCoins(idCliente);
+
+                await _pedidoService.AsignarGamerCoins(idCliente, total, cantidad);
+
                 return Ok(new { message = "El pedido se registro con exito" });
             }
-            catch (Exception)
+            catch (DbUpdateException ex) when (ex.InnerException is SqlException sqlEx && sqlEx.Number == 50000)
             {
-                return StatusCode(500, new { message = "Error interno al registrar el pedido" });
+                // Captura el error específico lanzado por el trigger
+                return BadRequest(new { message = sqlEx.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Error interno al registrar el pedido" + ex.ToString()});
             }
         }
 
@@ -174,6 +192,23 @@ namespace TiendaPc.API.Controllers
                     return BadRequest(new { message = "El pedido ya se encuentra cancelado, o no existe."});
                 }
                 return Ok(new {message = "El pedido fue cancelado con exito"});
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Error interno: " + ex.ToString() });
+            }
+        }
+
+        [HttpPatch("ConfirmOrder-Pedido")]
+        public async Task<IActionResult> ConfrimrOrder(int id)
+        {
+            try
+            {
+                if (!await _pedidoService.ConfrimrOrder(id))
+                {
+                    return BadRequest(new { message = "El pedido no esta pendiente, o no existe." });
+                }
+                return Ok(new { message = "El pedido fue cancelado con exito" });
             }
             catch (Exception ex)
             {

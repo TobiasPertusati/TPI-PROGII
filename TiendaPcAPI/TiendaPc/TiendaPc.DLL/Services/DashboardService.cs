@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TiendaPc.API.DTO;
 using TiendaPc.DLL.Data.Repository.Interfaces;
 using TiendaPc.DLL.DTO;
+using TiendaPc.DLL.Models.DTO;
 using TiendaPc.DLL.Services.Interfaces;
 
 namespace TiendaPc.DLL.Services
@@ -44,7 +45,7 @@ namespace TiendaPc.DLL.Services
             return _dashboardRepository.GetNumeroVentasMesActual();
         }
 
-        public Task<decimal> FacturacionDeEsteMes()
+        public Task<string> FacturacionDeEsteMes()
         {
             return _dashboardRepository.FacturacionDeEsteMes();
         }
@@ -52,6 +53,16 @@ namespace TiendaPc.DLL.Services
         public Task<int> GetCantidadClientes()
         {
             return _dashboardRepository.GetCantidadClientes();
+        }
+
+        public Task<List<PedidosMasGrandesDTO>> ObtenerPedidosConMayorImporte()
+        {
+            return _dashboardRepository.ObtenerPedidosConMayorImporte();
+        }
+
+        public Task<List<Ultimos5ClientesDTO>> Ultimos5Clientes()
+        {
+            return _dashboardRepository.Ultimos5Clientes();
         }
     }
 }

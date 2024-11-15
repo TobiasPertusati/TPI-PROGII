@@ -1,4 +1,4 @@
-async function cargarCombosCliente(){
+async function cargarCombosCliente() {
     try {
         // Cargar opciones de Tipo Entrega
         await cargarSelect('https://localhost:7119/api/Provincia', 'ddlProvincias', 'idProvincia', 'nombreProvincia');
@@ -13,9 +13,9 @@ async function cargarCombosCliente(){
     }
 
 }
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     // Event listener para cargar ciudades cuando se selecciona una provincia
-    document.getElementById("ddlProvincias").addEventListener("change", function() {
+    document.getElementById("ddlProvincias").addEventListener("change", function () {
         const idProvincia = this.value;
         if (idProvincia) {
             cargarCiudades(idProvincia);
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // Event listener para cargar barrios cuando se selecciona una ciudad
-    document.getElementById("ddlCiudades").addEventListener("change", function() {
+    document.getElementById("ddlCiudades").addEventListener("change", function () {
         const idCiudad = this.value;
         if (idCiudad) {
             cargarBarrios(idCiudad);
@@ -154,13 +154,11 @@ function guardarDatosCliente() {
         idTipoDoc: document.getElementById("ddlTipoDocumentos").value,
         documento: document.getElementById("documentoCliente").value,
         nombre: document.getElementById("nombreCliente").value,
-        email : document.getElementById("emailCliente").value,
+        email: document.getElementById("emailCliente").value,
         apellido: document.getElementById("apellidoCliente").value,
         direccion: document.getElementById("direccionCliente").value,
         nroCalle: parseInt(document.getElementById("nroCalleCliente").value),
-        estado: true
     };
-    console.log(cliente); 
 
     fetch(`https://localhost:7119/api/Cliente/Post-Cliente`, {
         method: 'POST',
@@ -168,27 +166,35 @@ function guardarDatosCliente() {
         body: JSON.stringify(cliente)
     })
         .then(response => handleResponse(response))
-        .catch(handleError)
+        .catch(errorCliente);
 }
 document.getElementById("guardarCambiosBtn").addEventListener("click", guardarDatosCliente);
 
 
 function handleResponse(response) {
-    if (!response.ok) {
-        throw new Error("Error en la operación");
-    }
-    swal("Éxito", "Se cargo el cliente con exito", "success")
-        .then(() => {
-            //obtener id del cliente que acabamos de cargar
-            // Recargar la tabla
-            cerrarModal();
-        });
+    return response.json().then(data => {
+        if (!response.ok) {
+            // Muestra el mensaje del error si la respuesta no es exitosa
+            if (response.status === 400) {
+                swal("Error", "Este documento ya está asignado a un cliente, verifique el campo documento'", "warning");
+            } else {
+                swal("Error", data, "error");
+            }
+            throw new Error(data); // Lanza un error para evitar que siga al éxito
+        }
+        swal("Éxito", "Se cargó el cliente con éxito", "success")
+            .then(() => {
+                cerrarModal();
+            });
+    });
 }
 
-
+function errorCliente(){
+    swal("Error", "Este documento ya está asignado a un cliente, verifique el campo documento", "warning");
+}
 function handleError(error) {
-    console.error(error);
-    swal("Error", "Ocurrió un error al realizar la operación.", "error");
+    swal("Error", "Error de conexión con el servidor", "error");
+    console.error("Error:", error);
 }
 
 async function buscarClientes() {
@@ -211,8 +217,12 @@ async function buscarClientes() {
                 // Recorre el array de clientes y crea una opción para cada cliente
                 clientes.forEach(cliente => {
                     const option = document.createElement('option');
+
+                    const numeroDocStr = cliente.documento.toString();
+
+
                     option.value = cliente.idCliente;
-                    option.textContent = `${cliente.nombre} ${cliente.apellido}`;  // Muestra nombre y apellido
+                    option.textContent = `${cliente.nombre} ${cliente.apellido} ${numeroDocStr.slice(-3)}`;  // Muestra nombre y apellido
                     ddlClientes.appendChild(option);
                 });
             } else {
@@ -227,6 +237,62 @@ async function buscarClientes() {
         swal("¡Atención!", "Debe ingresar al menos 3 caracteres para buscar clientes.", "info");
     }
 }
+
+
+// Función para calcular el descuento basado en gamer coins
+function calcularDescuento(gamerCoins) {
+    return ((gamerCoins / 1000) * 5).toFixed(2);
+}
+
+const useCoinsCheckbox = document.getElementById('useCoins');
+const cantidadDescLabel = document.getElementById('cantidadDesc');
+const descuentoEscondido = document.getElementById('descuentoGamerCoins');
+
+// Función para obtener el cliente por ID y calcular el descuento
+async function obtenerClienteYCalcularDescuento() {
+    console.log('Checkbox checked:', useCoinsCheckbox.checked);
+
+    // Verifica si el checkbox está marcado
+    if (!useCoinsCheckbox.checked) {
+        cantidadDescLabel.textContent = 'Descuento : 0%';
+        descuentoEscondido.value = 0;
+        return;
+    }
+
+    // Obtiene el ID del cliente seleccionado
+    const ddlClientes = document.getElementById('ddlClientes');
+    const clienteId = ddlClientes.value;
+    if (!clienteId) {
+        alert('Por favor, seleccione un cliente.');
+        return;
+    }
+
+    try {
+        // Llama al endpoint para obtener los datos del cliente
+        const response = await fetch(`https://localhost:7119/api/Cliente/GetCliente-ByID?id=${clienteId}`);
+        if (!response.ok) {
+            throw new Error('No se encontró un cliente con esa id');
+        }
+
+        const cliente = await response.json();
+        
+        console.log(cliente.gamerCoins);
+        // Calcula el descuento basado en los gamer coins del cliente
+        const descuento = calcularDescuento(cliente.gamerCoins);
+        cantidadDescLabel.textContent = `Descuento : ${descuento}%`;
+        descuentoEscondido.value = descuento;
+
+        console.log('Descuento calculado:', descuento);
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Hubo un error al obtener el cliente o calcular el descuento.');
+    }
+}
+
+// Evento que se activa cuando se cambia el estado del checkbox
+useCoinsCheckbox.addEventListener('change', obtenerClienteYCalcularDescuento);
+
+
 
 async function cargarOpciones() {
     try {
@@ -497,8 +563,7 @@ async function verificarStockComponente(idComponente, cantidad) {
             throw new Error("No se encontró el componente o hubo un error en la solicitud.");
         }
         const componente = await response.json();
-        console.log(componente.stock);
-        
+
         // Comprobar si la cantidad solicitada supera el stock disponible
         if (cantidad > componente.stock) {
             swal("!Error!", `El componente ${componente.nombre} no tiene suficiente stock. Stock disponible: ${componente.stock}.`, "error");
@@ -556,17 +621,17 @@ async function validarPedido() {
     for (const fila of filasComponentes) {
         const idComponente = fila.querySelector('td:nth-child(1)').textContent.trim();
         const cantidad = parseInt(fila.querySelector('input[type="number"]').value, 10);
-        
+
         if (isNaN(cantidad) || cantidad <= 0) {
             swal("!Error!", "Cada componente debe tener una cantidad mayor a 0.", "error");
             return false;
         }
 
-        const stockValido = await verificarStockComponente(idComponente, cantidad);
-        if (!stockValido) {
-            return false; // Detiene la validación si algún componente no tiene suficiente stock
-        }
         // consumir endpoint para que verifique que la cantidad de cada componente no supere el stock que se dispone del mismo
+        // const stockValido = await verificarStockComponente(idComponente, cantidad);
+        // if (!stockValido) {
+        //     return false; // Detiene la validación si algún componente no tiene suficiente stock
+        // }
 
     }
 
@@ -575,9 +640,11 @@ async function validarPedido() {
 
 
 async function cargarPedido() {
-    if (!validarPedido()) {
+
+    if (!(await validarPedido())) {  // Espera el resultado de validarPedido
         return; // Detiene el proceso si la validación falla
     }
+    console.log('Pedido válido, continúa el proceso');
     const detallesPedidos = [];
     const filasComponentes = document.querySelectorAll('#tablaComponentes tr');
 
@@ -604,10 +671,11 @@ async function cargarPedido() {
         legajoEmp: sessionStorage.getItem('legajoEmp'),
         armadoPc: false,
         idFormaEntrega: parseInt(document.getElementById('ddlTipoEntrega').value || null),
+        descGamerCoins: parseFloat(document.getElementById('descuentoGamerCoins').value || null),
         detallesPedidos: detallesPedidos
     };
 
-    
+
     try {
         const response = await fetch('https://localhost:7119/api/Pedido/Nuevo-Pedido', {
             method: 'POST',

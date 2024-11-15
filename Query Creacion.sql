@@ -2011,26 +2011,11 @@ update CLIENTES set email = 'MiguelCruz@gmail.com' where id_cliente = 9
 update CLIENTES set email = 'paula.benitez@gmail.com' where id_cliente = 10
 
 
+ALTER TABLE CLIENTES
+ADD gamer_coins int
 
--TRIGGER PARA controlar y actualizar Stock-------------------------------
---CREATE TRIGGER dis_updStock
---ON DETALLES_PEDIDOS
---AFTER Insert
---AS
---BEGIN
---	IF EXISTS (SELECT 1 FROM inserted I			---Si la cantidad que se pide supera el stock disponible, revertir transaccion
---				JOIN Componentes C ON C.id_componente = I.id_componente
---				WHERE I.cantidad > C.stock
---				)
---			BEGIN
---				ROLLBACK TRANSACTION;
---				THROW 50000, 'No hay suficiente stock para la venta.', 1;
---				 RETURN;--termina el proceso
---			END
+UPDATE CLIENTES set gamer_coins = 0
 
---	Update C
---	SET stock = C.stock - I.cantidad
---	FROM Componentes C 
---	JOIN inserted I ON C.id_componente = I.id_componente;
+ALTER TABLE PEDIDOS
+ADD desc_gamer_coins decimal(5,2)
 
---END;

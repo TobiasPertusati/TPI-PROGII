@@ -14,6 +14,9 @@ namespace TiendaPc.DLL.Data.Repository.Intefaces
         Task<bool> Save(Pedido pedido); //post pedido
         //Task<bool> Update(int id, Pedido pedido);
         Task<bool> LowOrder(int id, string motivoCancelacion);//baja logica, estableciendo en false el estado del pedido
+        Task<bool> ConfrimrOrder(int id);//establecer pedido entregado.
+        public Task<bool> AsignarGamerCoins(int idCliente, decimal total, int cantidad);
+        public Task<bool> DescontarGamerCoins(int idCliente);
 
     }
 }

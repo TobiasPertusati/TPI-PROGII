@@ -3,6 +3,7 @@ using TiendaPc.DLL.Models;
 using TiendaPc.DLL.Data;
 using TiendaPc.DLL.Data.Repository.Intefaces;
 using TiendaPc.DLL.Models.DTO;
+using Microsoft.Data.SqlClient;
 
 namespace TiendaPc.DLL.Data.Repository
 {
@@ -13,6 +14,19 @@ namespace TiendaPc.DLL.Data.Repository
         public PedidoRepository(DB_TIENDA_PCContext context)
         {
             _context = context;
+        }
+
+        public async Task<bool> ConfrimrOrder(int id)
+        {
+            var pedido = await _context.Pedidos.FindAsync(id);
+
+
+            if (pedido != null && pedido.Estado == "Pendiente")
+            {
+                pedido.Estado = "Entregado";
+            }
+
+            return await _context.SaveChangesAsync() > 0;
         }
 
         public async Task<List<Pedido>> GetAll()
@@ -34,7 +48,7 @@ namespace TiendaPc.DLL.Data.Repository
                     NombreComponente = dp.IdComponenteNavigation.Nombre,
                     MarcaComponente = dp.IdComponenteNavigation.IdMarcaNavigation.NombreMarca,
                     TipoComponente = dp.IdComponenteNavigation.IdTipoComponenteNavigation.Tipo
-                }); 
+                });
             return await query.ToListAsync();
         }
 
@@ -48,26 +62,26 @@ namespace TiendaPc.DLL.Data.Repository
 
         public Task<PedidoDto> GetByIdPedidoDto(int id)
         {
-             return _context.Pedidos
-               .Include(p => p.IdFormaPagoNavigation)
-               .Include(p => p.IdClienteNavigation)
-               .Include(p => p.LegajoEmpNavigation)
-               .Select(p => new PedidoDto
-               {
-                   IdPedido = p.IdPedido,
-                   NombreCliente = p.IdClienteNavigation.Nombre + ' ' + p.IdClienteNavigation.Apellido,
-                   NombreEmpleado = p.LegajoEmpNavigation.Nombre + ' ' + p.LegajoEmpNavigation.Apellido,
-                   FechaPedido = p.FechaPedido,
-                   Total = p.DetallesPedidos
-                           .Sum(detalle => detalle.Cantidad * detalle.PrecioUnitario * (1 - (detalle.Descuento ?? 0) / 100))
-                           * (p.IdFormaPagoNavigation.Recargo.HasValue
-                               ? (1 + p.IdFormaPagoNavigation.Recargo.Value / 100)
-                               : (p.IdFormaPagoNavigation.Descuento.HasValue
-                                   ? (1 - p.IdFormaPagoNavigation.Descuento.Value / 100)
-                                   : 1)),
-                   Estado = p.Estado,
-                   NombreFormaPago = p.IdFormaPagoNavigation.NombreFormaPago
-               }).FirstOrDefaultAsync(p => p.IdPedido == id);
+            return _context.Pedidos
+              .Include(p => p.IdFormaPagoNavigation)
+              .Include(p => p.IdClienteNavigation)
+              .Include(p => p.LegajoEmpNavigation)
+              .Select(p => new PedidoDto
+              {
+                  IdPedido = p.IdPedido,
+                  NombreCliente = p.IdClienteNavigation.Nombre + ' ' + p.IdClienteNavigation.Apellido,
+                  NombreEmpleado = p.LegajoEmpNavigation.Nombre + ' ' + p.LegajoEmpNavigation.Apellido,
+                  FechaPedido = p.FechaPedido,
+                  Total = p.DetallesPedidos
+                          .Sum(detalle => detalle.Cantidad * detalle.PrecioUnitario * (1 - (detalle.Descuento ?? 0) / 100))
+                          * (p.IdFormaPagoNavigation.Recargo.HasValue
+                              ? (1 + p.IdFormaPagoNavigation.Recargo.Value / 100)
+                              : (p.IdFormaPagoNavigation.Descuento.HasValue
+                                  ? (1 - p.IdFormaPagoNavigation.Descuento.Value / 100)
+                                  : 1)) * (1 - (p.DescGamerCoins ?? 0) / 100),
+                  Estado = p.Estado,
+                  NombreFormaPago = p.IdFormaPagoNavigation.NombreFormaPago
+              }).FirstOrDefaultAsync(p => p.IdPedido == id);
         }
 
         public async Task<List<PedidoDto>> GetPedidosFiltros(DateTime? fechaDesde, DateTime? fechaHasta, int? idFormaPago, string? estado)
@@ -80,12 +94,12 @@ namespace TiendaPc.DLL.Data.Repository
                 .Where(p => (!fechaDesde.HasValue || p.FechaPedido >= fechaDesde)
                             && (!fechaHasta.HasValue || p.FechaPedido <= fechaHasta)
                             && (string.IsNullOrEmpty(estado) || p.Estado == estado)
-                            && (!idFormaPago.HasValue || p.IdFormaPago  == idFormaPago.Value))
+                            && (!idFormaPago.HasValue || p.IdFormaPago == idFormaPago.Value))
                 .Select(p => new PedidoDto
                 {
                     IdPedido = p.IdPedido,
-                    NombreCliente = p.IdClienteNavigation.Nombre + ' ' + p.IdClienteNavigation.Apellido, 
-                    NombreEmpleado = p.LegajoEmpNavigation.Nombre + ' ' + p.LegajoEmpNavigation.Apellido, 
+                    NombreCliente = p.IdClienteNavigation.Nombre + ' ' + p.IdClienteNavigation.Apellido,
+                    NombreEmpleado = p.LegajoEmpNavigation.Nombre + ' ' + p.LegajoEmpNavigation.Apellido,
                     FechaPedido = p.FechaPedido,
                     Total = p.DetallesPedidos
                             .Sum(detalle => detalle.Cantidad * detalle.PrecioUnitario * (1 - (detalle.Descuento ?? 0) / 100))
@@ -93,9 +107,9 @@ namespace TiendaPc.DLL.Data.Repository
                                 ? (1 + p.IdFormaPagoNavigation.Recargo.Value / 100)
                                 : (p.IdFormaPagoNavigation.Descuento.HasValue
                                     ? (1 - p.IdFormaPagoNavigation.Descuento.Value / 100)
-                                    : 1)),
+                                    : 1)) * ( 1 - (p.DescGamerCoins ?? 0) / 100),
                     Estado = p.Estado,
-                    NombreFormaPago = p.IdFormaPagoNavigation.NombreFormaPago 
+                    NombreFormaPago = p.IdFormaPagoNavigation.NombreFormaPago
                 });
 
             return await query.ToListAsync();
@@ -108,6 +122,41 @@ namespace TiendaPc.DLL.Data.Repository
             return await lstBuiltPC;
         }
 
+        public async Task<bool> AsignarGamerCoins(int idCliente, decimal total, int cantidad)
+        {
+            try
+            {
+                var parameters = new[]
+                {
+                            new SqlParameter("@ID_CLIENTE", idCliente),
+                            new SqlParameter("@IMPORTE", total),
+                            new SqlParameter("@CANTIDAD", cantidad)
+                };
+                await _context.Database.ExecuteSqlRawAsync("EXEC SP_ASIGNAR_GAMER_COINS @ID_CLIENTE, @IMPORTE, @CANTIDAD", parameters);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
+        public async Task<bool> DescontarGamerCoins(int idCliente)
+        {
+            try
+            {
+                var parameters = new[]
+                {
+                            new SqlParameter("@ID_CLIENTE", idCliente),
+                };
+                await _context.Database.ExecuteSqlRawAsync("EXEC SP_DESCONTAR_GAMER_COINS @ID_CLIENTE", parameters);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
+
         public async Task<bool> LowOrder(int id, string motivoCancelacion)
         {
             var pedido = await _context.Pedidos.FindAsync(id);
@@ -118,23 +167,30 @@ namespace TiendaPc.DLL.Data.Repository
                 return false; // El pedido no existe
             }
             // Verifica si el pedido no está cancelado o si ya fue entregado
-            if (pedido.Estado != "Cancelado" || pedido.Estado != "Entregado")
+            if (pedido.Estado == "Pendiente")
             {
-                pedido.Estado = "Cancelado";
-                pedido.FechaCancelacion = DateTime.Now;
-                pedido.MotivoCancelacion = motivoCancelacion;
-
-                _context.Pedidos.Update(pedido);
-                // Guardar cambios
-                return await _context.SaveChangesAsync() > 0;
+                // LLAMAR AL STORE PROCEDURE
+                try
+                {
+                    var parameters = new[]
+                    {
+                            new SqlParameter("@id_pedido", id),
+                            new SqlParameter("@motivoBaja", motivoCancelacion)
+                    };
+                    await _context.Database.ExecuteSqlRawAsync("EXEC SP_LOW_ORDER @id_pedido, @motivoBaja", parameters);
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }     
             }
-
             return false; // El pedido ya estaba cancelado
         }
 
         public async Task<bool> Save(Pedido pedido)
         {
-            if (!pedido.ArmadoPc)   
+            if (!pedido.ArmadoPc)
             {
                 pedido.PrecioArmadoPc = null;
             }

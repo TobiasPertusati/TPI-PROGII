@@ -108,5 +108,32 @@ namespace TiendaPc.API.Controllers
                 return NotFound();
             }
         }
+
+        [HttpGet("PedidosConMayorImporte")]
+        public async Task<IActionResult> GetPedidosConMayorImporte()
+        {
+            try
+            {
+                return Ok(await _dasboardService.ObtenerPedidosConMayorImporte());
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.ToString());
+            }
+        }
+
+        [HttpGet("Ultimos5Clientes")]
+        public async Task<IActionResult> GetUltimos5Clientes()
+        {
+            try
+            {
+                return Ok(await _dasboardService.Ultimos5Clientes());
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }   
 }

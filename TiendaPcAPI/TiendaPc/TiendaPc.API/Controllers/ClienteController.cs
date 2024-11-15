@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using TiendaPc.DLL.Models;
 using TiendaPc.DLL.Services.Interfaces;
@@ -57,11 +59,15 @@ namespace TiendaPc.API.Controllers
         {
             try
             {
-                return Ok(await _clienteService.GetById(id));
+                var c = await _clienteService.GetById(id);
+                if (c == null)
+                    return NotFound(new { message = "No se encontro un cliente con esa id" });
+
+                return Ok(c);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return NotFound("No se encontró ningun cliente con ese ID");
+                return StatusCode(500, new { message = "Error interno: " + ex.ToString() });
             }
         }
 
@@ -70,17 +76,22 @@ namespace TiendaPc.API.Controllers
         {
             try
             {
-                bool res = await _clienteService.Save(cliente);
                 if (cliente == null)
                 {
                     return BadRequest("El cliente no puede estar vacío");
                 }
+                bool res = await _clienteService.Save(cliente);
                 if (!res)
                 {
                     return BadRequest("No se pudo grabar el cliente");
 
                 }
                 return Ok(res);
+            }
+            catch (Exception ex) when (ex.InnerException is SqlException sqlEx && sqlEx.Number == 50000)
+            {
+                // Captura el error específico lanzado por el trigger
+                return BadRequest(new { message = sqlEx.Message } );
             }
             catch (Exception)
             {

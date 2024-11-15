@@ -9,6 +9,7 @@ using TiendaPc.API.DTO;
 using TiendaPc.DLL.Data.Repository.Interfaces;
 using TiendaPc.DLL.DTO;
 using TiendaPc.DLL.Models;
+using TiendaPc.DLL.Models.DTO;
 
 namespace TiendaPc.DLL.Data.Repository
 {
@@ -116,15 +117,19 @@ namespace TiendaPc.DLL.Data.Repository
             return cantidadPedidos;
         }
 
-        public async Task<decimal> FacturacionDeEsteMes()
+        public async Task<string> FacturacionDeEsteMes()
         {
-            decimal totalVentasMesActual = await _context.Pedidos
-             .Where(p => p.FechaPedido.Month == DateTime.Now.Month && p.FechaPedido.Year == DateTime.Now.Year)
-             .Join(_context.DetallesPedidos, p => p.IdPedido, dp => dp.IdPedido, (p, dp) => new { dp.Cantidad, dp.PrecioUnitario })
-             .SumAsync(dp => dp.Cantidad * dp.PrecioUnitario);
+            var cultura = CultureInfo.GetCultureInfo("es-AR"); // Cultura para formateo
 
-            return totalVentasMesActual;
+            decimal totalVentasMesActual = await _context.Pedidos
+                .Where(p => p.FechaPedido.Month == DateTime.Now.Month && p.FechaPedido.Year == DateTime.Now.Year)
+                .Join(_context.DetallesPedidos, p => p.IdPedido, dp => dp.IdPedido, (p, dp) => new { dp.Cantidad, dp.PrecioUnitario })
+                .SumAsync(dp => dp.Cantidad * dp.PrecioUnitario);
+
+            // Formatear como string con separadores
+            return string.Format(cultura, "{0:N2}", totalVentasMesActual);
         }
+
 
         public Task<int> GetCantidadClientes()
         {
@@ -132,5 +137,60 @@ namespace TiendaPc.DLL.Data.Repository
 
             return clientes;
         }
+
+        public async Task<List<PedidosMasGrandesDTO>> ObtenerPedidosConMayorImporte()
+        {
+            var fechaActual = DateTime.Now.Year;
+            var cultura = CultureInfo.GetCultureInfo("es-AR");
+
+            var resultado = await (from p in _context.Pedidos
+                                   join dp in _context.DetallesPedidos on p.IdPedido equals dp.IdPedido
+                                   join c in _context.Clientes on p.IdCliente equals c.IdCliente
+                                   where p.FechaPedido.Year == fechaActual
+                                   group dp by new { p.IdPedido, c.Apellido, c.Nombre, p.FechaPedido } into g
+                                   orderby g.Sum(dp => (dp.Cantidad * dp.PrecioUnitario) - dp.Descuento) descending
+                                   select new PedidosMasGrandesDTO
+                                   {
+                                       IdPedido = g.Key.IdPedido,
+                                       Cliente = g.Key.Apellido + " " + g.Key.Nombre,
+                                       FechaPedido = g.Key.FechaPedido, // Mantener como DateTime
+                                       Importe = string.Format(cultura, "{0:N2}", g.Sum(dp => (dp.Cantidad * dp.PrecioUnitario) - dp.Descuento))
+                                   }).Take(5).ToListAsync();
+
+            // Si necesitas formatear la fecha al devolverla, hazlo en la capa de presentación o formatea al mostrar
+            return resultado;
+        }
+
+
+
+
+        public async Task<List<Ultimos5ClientesDTO>> Ultimos5Clientes()
+        {
+            var cultura = CultureInfo.GetCultureInfo("es-AR"); // Cultura para formateo
+
+            var resultado = await (from p in _context.Pedidos
+                                   join c in _context.Clientes on p.IdCliente equals c.IdCliente
+                                   join dp in _context.DetallesPedidos on p.IdPedido equals dp.IdPedido
+                                   join fp in _context.FormasPagos on p.IdFormaPago equals fp.IdFormaPago
+                                   group dp by new { p.IdPedido, c.Apellido, c.Nombre, p.FechaPedido, fp.NombreFormaPago } into g
+                                   orderby g.Key.FechaPedido descending
+                                   select new Ultimos5ClientesDTO
+                                   {
+                                       Cliente = g.Key.Apellido + " " + g.Key.Nombre,
+                                       FormaPago = g.Key.NombreFormaPago,
+                                       FechaPedido = g.Key.FechaPedido, // Dejar como DateTime
+                                       Importe = string.Format(cultura, "{0:N2}", g.Sum(dp => (dp.Cantidad * dp.PrecioUnitario) - (dp.Descuento ?? 0)))
+                                   }).Take(5).ToListAsync();
+
+            return resultado;
+        }
+
+
+
+
+
+
+
+
     }
 }
